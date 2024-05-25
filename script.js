@@ -22,12 +22,10 @@ function updateTime() {
     document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
 }
 
-// JavaScript
 async function getFileSize(owner, repo, path, branch = 'main') {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`);
     const data = await response.json();
     const size = data.size;
-    console.log(`Filesize for ${path}: ${size} bytes`);
     return size;
 }
 
@@ -46,6 +44,42 @@ async function updateFilesize() {
 
     document.getElementById('filesize').innerText = `Source Filesize: ${(totalSize / 1024).toFixed(2)} KB`;
 }
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const image = new Image();
+
+// Set the source of the image
+image.crossOrigin = "Anonymous"; // Enable cross-origin requests
+image.src = 'https://avatars.githubusercontent.com/u/26364458?v=4';
+
+
+// When the image is loaded, draw it on the canvas
+image.onload = function () {
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+    // Get the image data from the canvas
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    // Calculate the average color of the image
+    let totalR = 0, totalG = 0, totalB = 0;
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        totalR += imageData.data[i];
+        totalG += imageData.data[i + 1];
+        totalB += imageData.data[i + 2];
+    }
+    const avgR = Math.round(totalR / (imageData.data.length / 4));
+    const avgG = Math.round(totalG / (imageData.data.length / 4));
+    const avgB = Math.round(totalB / (imageData.data.length / 4));
+
+    // Set the glow color based on the average color of the image
+    const glowColor = `rgba(${avgR}, ${avgG}, ${avgB}, 0.4)`;
+
+    // Apply the glow effect to the profile picture
+    const profilePicture = document.getElementById('avatar');
+    profilePicture.style.filter = `drop-shadow(0 0 20px ${glowColor})`;
+};
+
 
 document.addEventListener('DOMContentLoaded', () => {
     updateTime();

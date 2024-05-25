@@ -62,6 +62,19 @@ a {
     right: 10px;
     font-size: 14px;
     color: #333;
+
+    /* fade in animation */
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .textbox {
@@ -77,6 +90,21 @@ a {
     text-align: left;
 }
 
+#canvas {
+    position: absolute;
+}
+
+.avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s, fill 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.075) rotate(-20deg);
+}
+
+
 .invisible {
     visibility: hidden;
 }
@@ -88,18 +116,6 @@ a {
 .icons a {
     margin: 0 10px;
     text-decoration: none;
-}
-
-.icons img {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s;
-    filter: saturate(0.5) hue-rotate(330deg);
-    /* Apply pinkish hue */
-}
-
-.icons img:hover {
-    transform: scale(1.2);
 }
 
 .icons svg {
