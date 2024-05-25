@@ -1,0 +1,109 @@
+/* Basic Cyberpunk Style */
+
+body {
+    background-color: black;
+    color: #00ff00;
+    /* Neon green text */
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Container Styling */
+.container {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #00ff00;
+    /* Neon green border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00ff00;
+    /* Neon green shadow */
+}
+
+/* Header Styling */
+h1,
+h2,
+h3 {
+    color: #00ffff;
+    /* Neon cyan */
+    text-shadow: 0 0 5px #00ffff;
+}
+
+/* Link Styling */
+a {
+    color: #ff00ff;
+    /* Neon pink */
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+    /* White */
+    text-shadow: 0 0 10px #ff00ff;
+    /* Neon pink glow */
+}
+
+/* Button Styling */
+button {
+    background-color: black;
+    color: #ff00ff;
+    /* Neon pink */
+    border: 2px solid #ff00ff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff00ff;
+    color: black;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+/* Input Field Styling */
+input,
+textarea {
+    background-color: black;
+    color: #00ff00;
+    /* Neon green */
+    border: 2px solid #00ff00;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #00ff00;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    /* Neon green */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00ffff;
+    /* Neon cyan */
+}
