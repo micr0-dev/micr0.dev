@@ -99,7 +99,7 @@ a {
     }
 }
 
-.scroll-arrow {
+#scroll-arrow {
     position: absolute;
     bottom: 20px;
     font-size: 2em;

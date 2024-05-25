@@ -1,7 +1,8 @@
 let text = "";
 let index = 0;
-const speed = 30; // Speed of the typing
+let scrollArrowMaxHeight = 0;
 
+const speed = 30; // Speed of the typing
 const username = 'micr0-dev'; // GitHub username
 
 function typeWriter() {
@@ -88,6 +89,25 @@ image.onload = function () {
     const profilePicture = document.getElementById('avatar');
     profilePicture.style.filter = `drop-shadow(0 0 20px ${glowColor})`;
 };
+
+function toggleScrollArrow() {
+    const scrollArrow = document.getElementById('scroll-arrow');
+    const aboutContainer = document.getElementById('about-container');
+
+    if (scrollArrowMaxHeight < scrollArrow.offsetHeight) {
+        scrollArrowMaxHeight = scrollArrow.offsetHeight;
+    }
+
+    if ((window.innerHeight - 563) / 2 > scrollArrowMaxHeight + 40) { // this makes no sense i give up, just hardcoding it
+        scrollArrow.style.display = 'block';
+    } else {
+        scrollArrow.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', toggleScrollArrow);
+window.addEventListener('resize', toggleScrollArrow);
+
 
 function scrollToContent() {
     document.querySelector('.additional-content').scrollIntoView({ behavior: 'smooth' });
