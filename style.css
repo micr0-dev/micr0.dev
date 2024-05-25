@@ -11,8 +11,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: radial-gradient(circle, #FFD1DC 2px, #FFF5F5 2px);
+    background-size: 40px 40px;
+    background-attachment: fixed;
+    /* Adjust the size for larger or smaller dots */
+
 }
 
 .container {
@@ -25,7 +31,27 @@ body {
     text-align: center;
     width: 80%;
     max-width: 600px;
-    margin: 20px;
+    margin: 20px auto;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.additional-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.additional-content .container {
+    margin-top: 20px;
 }
 
 h1 {
@@ -43,6 +69,7 @@ p {
 
 a {
     text-decoration: none;
+    color: #FF69B4;
 }
 
 .clock {
@@ -70,6 +97,15 @@ a {
     100% {
         opacity: 1;
     }
+}
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 20px;
+    font-size: 2em;
+    color: #FF69B4;
+    cursor: pointer;
+    animation: bounce 2s infinite;
 }
 
 .textbox {
@@ -167,12 +203,46 @@ a {
     }
 }
 
+.project-card {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 15px;
+    border: 2px solid #FFD1DC;
+    border-radius: 10px;
+    background-color: #FFF5F5;
+    text-align: left;
+    position: relative;
+    width: 90%;
+    cursor: pointer;
+    transition: transform 0.3s, border 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.03);
+    border: 2px solid #FF69B4;
+}
+
+.stars {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    font-size: 18px;
+    color: #FF69B4;
+}
+
+.github-button {
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
+    color: #FF69B4;
+}
+
 /* For screens smaller than 600px */
 @media (max-width: 600px) {
     .container {
         width: 80%;
         padding: 20px;
-        margin-bottom: 0px;
+        padding-bottom: 30px;
     }
 
     .avatar {

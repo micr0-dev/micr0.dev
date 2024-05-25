@@ -2,6 +2,8 @@ let text = "";
 let index = 0;
 const speed = 30; // Speed of the typing
 
+const username = 'micr0-dev'; // GitHub username
+
 function typeWriter() {
     if (index < text.length) {
         const newText = document.getElementById("typewriter-text").innerHTML.substring(0, index + 1) + text[index];
@@ -31,13 +33,12 @@ async function getFileSize(owner, repo, path, branch = 'main') {
 async function updateFilesize() {
     const files = ['index.html', 'style.css', 'script.js']; // Files to get the size of
 
-    const owner = 'micr0-dev'; // Owner of the repository
     const repo = 'micr0.dev'; // Repository to get the files from
 
     let totalSize = 0;
 
     for (const file of files) {
-        const size = await getFileSize(owner, repo, file);
+        const size = await getFileSize(username, repo, file);
         totalSize += size;
     }
 
@@ -88,6 +89,46 @@ image.onload = function () {
     profilePicture.style.filter = `drop-shadow(0 0 20px ${glowColor})`;
 };
 
+function scrollToContent() {
+    document.querySelector('.additional-content').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Fetch most starred repositories
+async function fetchMostStarredRepos() {
+    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=50`);
+    const repos = await response.json();
+    return repos;
+}
+
+// Create project cards
+function createProjectCards(repos) {
+    const projectsContainer = document.getElementById('projects-container');
+    repos.sort((a, b) => b.stargazers_count - a.stargazers_count); // Sort by stars
+    repos = repos.filter(repo => repo.description !== null);
+
+    repos = repos.slice(0, 5);
+    repos.forEach(repo => {
+        const card = document.createElement('div');
+        card.classList.add('project-card');
+        // make the card clickable
+        card.addEventListener('click', () => {
+            window.open(repo.html_url, '_blank');
+        });
+
+        card.innerHTML = `
+            <h2>${repo.name}</h2>
+            <p>${repo.description}</p>
+            <p class="stars">&#9733; ${repo.stargazers_count}</p>
+        `;
+        projectsContainer.appendChild(card);
+    });
+}
+
+// Initialize
+async function githubProjects() {
+    const repos = await fetchMostStarredRepos();
+    createProjectCards(repos);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     updateTime();
@@ -98,3 +139,5 @@ document.addEventListener('DOMContentLoaded', () => {
     text = document.getElementById("typewriter-source").innerHTML
     typeWriter();
 });
+
+document.addEventListener('DOMContentLoaded', githubProjects);
