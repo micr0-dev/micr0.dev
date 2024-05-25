@@ -27,15 +27,24 @@ async function getFileSize(owner, repo, path, branch = 'main') {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`);
     const data = await response.json();
     const size = data.size;
+    console.log(`Filesize for ${path}: ${size} bytes`);
     return size;
 }
 
 async function updateFilesize() {
+    const files = ['index.html', 'style.css', 'script.js'];
+
     const owner = 'micr0-dev';
     const repo = 'micr0.dev';
-    const path = 'index.html';
-    const filesize = await getFileSize(owner, repo, path);
-    document.getElementById('filesize').innerText = `GitHub Filesize: ${(filesize / 1024).toFixed(2)} KB`;
+
+    let totalSize = 0;
+
+    for (const file of files) {
+        const size = await getFileSize(owner, repo, file);
+        totalSize += size;
+    }
+
+    document.getElementById('filesize').innerText = `Source Filesize: ${(totalSize / 1024).toFixed(2)} KB`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

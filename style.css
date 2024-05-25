@@ -44,6 +44,10 @@ p {
     display: inline
 }
 
+a {
+    text-decoration: none;
+}
+
 .clock {
     position: absolute;
     top: 10px;
