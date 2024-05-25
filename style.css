@@ -1,10 +1,8 @@
-/* Import a cute font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 body {
     font-family: 'Nunito', sans-serif;
     background-color: #FFF5F5;
-    /* Soft pink background */
     color: #333;
     margin: 0;
     padding: 0;
@@ -19,9 +17,7 @@ body {
     position: relative;
     background-color: #FFFFFF;
     border: 2px solid #FFD1DC;
-    /* Light pink border */
     border-radius: 20px;
-    /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
@@ -32,7 +28,6 @@ body {
 
 h1 {
     color: #FF69B4;
-    /* Hot pink for titles */
     font-size: 2.5em;
     margin-bottom: 10px;
 }
@@ -62,8 +57,6 @@ a {
     right: 10px;
     font-size: 14px;
     color: #333;
-
-    /* fade in animation */
     animation: fadeIn 1s;
 }
 
@@ -82,11 +75,8 @@ a {
     margin: 20px 0;
     padding: 10px;
     border: 2px solid #FFD1DC;
-    /* Light pink border */
     border-radius: 10px;
-    /* Rounded corners */
     background-color: #FFF5F5;
-    /* Soft pink background */
     text-align: left;
 }
 
@@ -122,17 +112,14 @@ a {
     width: 40px;
     height: 40px;
     fill: #FF69B4;
-    /* Pink color for icons */
     transition: transform 0.3s, fill 0.3s;
 }
 
 .icons svg:hover {
     transform: scale(1.2);
     fill: #FF1493;
-    /* Darker pink on hover */
 }
 
-/* Add some cute animations */
 @keyframes bounce {
 
     0%,
@@ -152,27 +139,10 @@ a {
     }
 }
 
-/* Add some cute animations */
-@keyframes jump {
-
-    0%,
-    50%,
-    70%,
-    90%,
-    100% {
-        transform: translateY(0);
-    }
-
-    20% {
-        transform: translateY(-20px);
-    }
-}
-
 .container {
     animation: bounce 1s 1;
 }
 
-/* Blinking cursor */
 .cursor {
     display: inline-block;
     margin-left: 0px;

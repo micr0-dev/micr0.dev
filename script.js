@@ -1,4 +1,3 @@
-// JavaScript
 let text = "";
 let index = 0;
 const speed = 30; // Speed of the typing
@@ -30,10 +29,10 @@ async function getFileSize(owner, repo, path, branch = 'main') {
 }
 
 async function updateFilesize() {
-    const files = ['index.html', 'style.css', 'script.js'];
+    const files = ['index.html', 'style.css', 'script.js']; // Files to get the size of
 
-    const owner = 'micr0-dev';
-    const repo = 'micr0.dev';
+    const owner = 'micr0-dev'; // Owner of the repository
+    const repo = 'micr0.dev'; // Repository to get the files from
 
     let totalSize = 0;
 
@@ -42,14 +41,23 @@ async function updateFilesize() {
         totalSize += size;
     }
 
-    document.getElementById('filesize').innerText = `Source Filesize: ${(totalSize / 1024).toFixed(2)} KB`;
+    const filesizeElement = document.createElement('span');
+    filesizeElement.innerText = `Source Filesize: ${(totalSize / 1024).toFixed(2)} KB`;
+    filesizeElement.style.opacity = '0';
+
+    document.getElementById('filesize').appendChild(filesizeElement);
+
+    setTimeout(() => {
+        filesizeElement.style.transition = 'opacity 1s';
+        filesizeElement.style.opacity = '1';
+    }, 100);
 }
 
+// Use the canvas to get the average color of the avatar for glow effect ^^
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const image = new Image();
 
-// Set the source of the image
 image.crossOrigin = "Anonymous"; // Enable cross-origin requests
 image.src = 'https://avatars.githubusercontent.com/u/26364458?v=4';
 
