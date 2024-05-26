@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
+/* Color Pallet */
 
+:root {
+    --primary-color: #FF69B4;
+    --highlighted-primary: #FF1493;
+    --background-color: #FFF5F5;
+    --backgorund-color-secondary: #FFD1DC;
+    --background-image: radial-gradient(circle, #FFD1DC 2px, #FFF5F5 2px);
+    --container-background-color: #FFFFFF;
+    --text-color: #333;
+}
+
+/* General Styling */
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #FFF5F5;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,16 +26,14 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
-    background-image: radial-gradient(circle, #FFD1DC 2px, #FFF5F5 2px);
+    background-image: var(--background-image);
     background-size: 40px 40px;
     background-attachment: fixed;
-    /* Adjust the size for larger or smaller dots */
-
 }
 
 .container {
     position: relative;
-    background-color: #FFFFFF;
+    background-color: var(--container-background-color);
     border: 2px solid #FFD1DC;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -55,7 +65,7 @@ body {
 }
 
 h1 {
-    color: #FF69B4;
+    color: var(--primary-color);
     font-size: 2.5em;
     margin-bottom: 10px;
 }
@@ -69,7 +79,18 @@ p {
 
 a {
     text-decoration: none;
-    color: #FF69B4;
+    color: var(--primary-color);
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00000000;
+    color: var(--primary-color);
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
 .clock {
@@ -77,7 +98,7 @@ a {
     top: 10px;
     left: 10px;
     font-size: 18px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .filesize {
@@ -85,7 +106,7 @@ a {
     bottom: 10px;
     right: 10px;
     font-size: 14px;
-    color: #333;
+    color: var(--text-color);
     animation: fadeIn 1s;
 }
 
@@ -103,7 +124,7 @@ a {
     position: absolute;
     bottom: 20px;
     font-size: 2em;
-    color: #FF69B4;
+    color: var(--primary-color);
     cursor: pointer;
     animation: bounce 2s infinite;
 }
@@ -114,7 +135,7 @@ a {
     padding: 10px;
     border: 2px solid #FFD1DC;
     border-radius: 10px;
-    background-color: #FFF5F5;
+    background-color: var(--background-color);
     text-align: left;
 }
 
@@ -149,13 +170,17 @@ a {
 .icons svg {
     width: 40px;
     height: 40px;
-    fill: #FF69B4;
+    fill: var(--primary-color);
     transition: transform 0.3s, fill 0.3s;
 }
 
 .icons svg:hover {
     transform: scale(1.2);
-    fill: #FF1493;
+    fill: var(--highlighted-primary);
+}
+
+#mastodon-inside {
+    fill: var(--container-background-color);
 }
 
 @keyframes bounce {
@@ -185,7 +210,7 @@ a {
     position: absolute;
     display: inline-block;
     margin-left: 2px;
-    color: #FF69B4;
+    color: var(--primary-color);
     animation: blink 0.7s infinite;
 }
 
@@ -209,7 +234,7 @@ a {
     padding: 15px;
     border: 2px solid #FFD1DC;
     border-radius: 10px;
-    background-color: #FFF5F5;
+    background-color: var(--background-color);
     text-align: left;
     position: relative;
     width: 90%;
@@ -227,14 +252,45 @@ a {
     top: 0px;
     left: 10px;
     font-size: 18px;
-    color: #FF69B4;
+    color: var(--primary-color);
 }
 
 .github-button {
     position: absolute;
     bottom: 2px;
     right: 10px;
-    color: #FF69B4;
+    color: var(--primary-color);
+}
+
+/* Dark Mode */
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #E86A92;
+        --highlighted-primary: #f64c82;
+        --background-color: #222;
+        --backgorund-color-secondary: #444;
+        --background-image: radial-gradient(circle, #444 2px, #222 2px);
+        --container-background-color: #333;
+        --text-color: #FFF;
+    }
+
+    .container {
+        border: 2px solid #444;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .textbox {
+        border: 2px solid #444;
+    }
+
+    .project-card {
+        border: 2px solid #444;
+    }
+
+    .project-card:hover {
+        border: 2px solid #E86A92;
+    }
 }
 
 /* For screens smaller than 600px */

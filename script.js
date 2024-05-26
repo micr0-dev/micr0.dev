@@ -168,6 +168,9 @@ async function githubProjects() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Enable dark mode
+
+
     updateTime();
     setInterval(updateTime, 1000);
 
