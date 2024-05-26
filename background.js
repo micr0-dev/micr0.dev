@@ -84,7 +84,7 @@ function init() {
 
 let fps = 0;
 let lastCalledTime;
-const fpsThreshold = 30;
+const fpsThreshold = 5;
 const frameSkipThreshold = 50;
 let frameSkipCounter = 0;
 
@@ -111,11 +111,11 @@ function animate() {
         }
     } else {
         console.log("FPS: ", fps, "FPS too low, skipping frame");
-        // frameSkipCounter++;
-        // if (frameSkipCounter > frameSkipThreshold) {
-        //     linesArray = [];
-        //     return;
-        // }
+        frameSkipCounter++;
+        if (frameSkipCounter > frameSkipThreshold) {
+            linesArray = [];
+            return;
+        }
     }
 }
 
