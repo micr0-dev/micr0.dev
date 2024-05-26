@@ -110,12 +110,12 @@ function animate() {
             linesArray[i].update();
         }
     } else {
-        console.log("FPS too low, skipping frame");
-        frameSkipCounter++;
-        if (frameSkipCounter > frameSkipThreshold) {
-            linesArray = [];
-            return;
-        }
+        console.log("FPS: ", fps, "FPS too low, skipping frame");
+        // frameSkipCounter++;
+        // if (frameSkipCounter > frameSkipThreshold) {
+        //     linesArray = [];
+        //     return;
+        // }
     }
 }
 
