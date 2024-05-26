@@ -7,7 +7,7 @@
     --highlighted-primary: #FF1493;
     --background-color: #FFF5F5;
     --backgorund-color-secondary: #FFD1DC;
-    --background-image: radial-gradient(circle, #FFD1DC 2px, #FFF5F5 2px);
+    --background-image: radial-gradient(circle, #FFF5F5 2px, #FFF5F5 2px);
     --container-background-color: #FFFFFF;
     --text-color: #333;
 }
@@ -16,7 +16,7 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: var(--background-color);
+    background-color: var(--backgorund-color-secondary);
     color: var(--text-color);
     margin: 0;
     padding: 0;
@@ -29,6 +29,20 @@ body {
     background-image: var(--background-image);
     background-size: 40px 40px;
     background-attachment: fixed;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.magnetic {
+    text-align: center;
+    color: var(--backgorund-color-secondary);
 }
 
 .container {
@@ -270,7 +284,7 @@ button {
         --highlighted-primary: #f64c82;
         --background-color: #222;
         --backgorund-color-secondary: #444;
-        --background-image: radial-gradient(circle, #444 2px, #222 2px);
+        --background-image: radial-gradient(circle, #222 2px, #222 2px);
         --container-background-color: #333;
         --text-color: #FFF;
     }
