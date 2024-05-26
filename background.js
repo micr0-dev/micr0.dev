@@ -40,10 +40,11 @@ class Line {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const angleToMouse = Math.atan2(dy, dx);
+        const distanceToMouse = Math.hypot(dx, dy);
 
         const scroll = window.scrollY / 1000;
 
-        let angleDiff = angleToMouse - this.angle + scroll;
+        let angleDiff = angleToMouse - this.angle + scroll + distanceToMouse / 1000;
         while (angleDiff > Math.PI) {
             angleDiff -= 2 * Math.PI;
         }
