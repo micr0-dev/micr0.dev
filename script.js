@@ -26,6 +26,10 @@ function updateTime() {
 
 async function getFileSize(owner, repo, path, branch = 'main') {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch file size: ${response.status} ${response.statusText}`);
+    }
+
     const data = await response.json();
     const size = data.size;
     return size;
@@ -116,6 +120,10 @@ function scrollToContent() {
 // Fetch most starred repositories
 async function fetchMostStarredRepos() {
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=50`);
+    // handle errors
+    if (!response.ok) {
+        throw new Error(`Failed to fetch repositories: ${response.status} ${response.statusText}`);
+    }
     const repos = await response.json();
     return repos;
 }
@@ -147,6 +155,15 @@ function createProjectCards(repos) {
 // Initialize
 async function githubProjects() {
     const repos = await fetchMostStarredRepos();
+    // display error if fetch fails
+    if (!repos) {
+        const error = document.createElement('div');
+        error.classList.add('project-card');
+        error.innerText = 'Failed to fetch projects';
+        document.getElementById('projects-container').appendChild(error);
+        return;
+    }
+
     createProjectCards(repos);
 }
 
