@@ -73,7 +73,7 @@ function addRating(post) {
     return ratingContainer;
 }
 
-async function fetchPosts() {
+async function fetchPosts(type = 'all') {
     const blogContainer = document.getElementById('blog-container');
     try {
         const response = await fetch('/api/posts');
@@ -88,11 +88,11 @@ async function fetchPosts() {
 
         posts.forEach(post => {
             let postContainer;
-            if (post.type === 'image') {
+            if (post.type === 'image' && (type === 'all' || type === 'image')) {
                 postContainer = buildImagePost(post);
-            } else if (post.type === 'article') {
+            } else if (post.type === 'article' && (type === 'all' || type === 'article')) {
                 postContainer = buildArticlePost(post);
-            } else if (post.type === 'microblog') {
+            } else if (post.type === 'microblog' && (type === 'all' || type === 'microblog')) {
                 postContainer = buildMicroblogPost(post);
             }
 
@@ -109,7 +109,3 @@ async function fetchPosts() {
         console.error('Error fetching posts:', error);
     }
 }
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    fetchPosts();
-});

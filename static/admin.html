@@ -43,7 +43,11 @@
 
     <div id="blog-container">
     </div>
-    <script type="module" src="posts.js"></script>
+    <script type="module" src="posts.js">
+        document.addEventListener('DOMContentLoaded', (event) => {
+            fetchPosts("article");
+        });
+    </script>
 
     <script>
         const form = document.getElementById('new-post-form');
