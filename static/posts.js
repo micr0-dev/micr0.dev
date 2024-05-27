@@ -5,14 +5,14 @@ function buildImagePost(post) {
     postContainer.classList.add('post', 'image-post');
 
     const imageElement = document.createElement('img');
-    imageElement.src = post.Thumbnail;
-    imageElement.alt = post.Title;
+    imageElement.src = post.thumbnail;
+    imageElement.alt = post.title;
 
     const titleElement = document.createElement('h2');
-    titleElement.textContent = post.Title;
+    titleElement.textContent = post.title;
 
     const descriptionElement = document.createElement('p');
-    descriptionElement.textContent = post.Description;
+    descriptionElement.textContent = post.description;
 
     postContainer.appendChild(imageElement);
     postContainer.appendChild(titleElement);
@@ -25,11 +25,17 @@ function buildArticlePost(post) {
     const postContainer = document.createElement('div');
     postContainer.classList.add('post', 'article-post');
 
+    const imageElement = document.createElement('img');
+    imageElement.src = post.thumbnail;
+
     const titleElement = document.createElement('h2');
-    titleElement.textContent = post.Title;
+    titleElement.textContent = post.title;
+
+    const descriptionElement = document.createElement('h3');
+    descriptionElement.textContent = post.description;
 
     const contentElement = document.createElement('p');
-    contentElement.textContent = marked(post.Content);
+    contentElement.textContent = marked(post.content);
 
     postContainer.appendChild(titleElement);
     postContainer.appendChild(contentElement);
@@ -41,11 +47,8 @@ function buildMicroblogPost(post) {
     const postContainer = document.createElement('div');
     postContainer.classList.add('post', 'microblog-post');
 
-    const titleElement = document.createElement('h3');
-    titleElement.textContent = post.Title;
-
     const contentElement = document.createElement('p');
-    contentElement.textContent = marked(post.Content);
+    contentElement.textContent = marked(post.content);
 
     postContainer.appendChild(titleElement);
     postContainer.appendChild(contentElement);
