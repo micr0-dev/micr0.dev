@@ -24,6 +24,22 @@ function updateTime() {
     document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const sslIndicator = document.getElementById('ssl-indicator');
+    const sslIcon = document.getElementById('ssl-icon');
+    const sslText = document.getElementById('ssl-text');
+
+    if (window.location.protocol === 'https:') {
+        sslText.textContent = 'Secure';
+        sslIndicator.classList.add('ssl-secure');
+        sslIcon.innerHTML = '<svg><use href="#lock-icon"></use></svg>';
+    } else {
+        sslText.textContent = 'Insecure';
+        sslIndicator.classList.add('ssl-insecure');
+        sslIcon.innerHTML = '<svg><use href="#unlock-icon"></use></svg>';
+    }
+});
+
 async function getFileSize(owner, repo, path, branch = 'main') {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`);
     if (!response.ok) {
