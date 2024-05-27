@@ -602,7 +602,7 @@ textarea {
 .post hr {
     margin: 20px -16px;
     border: 0;
-    border-top: 2px solid #FF69B4;
+    border-top: 1px solid #FF69B4;
     box-sizing: content-box;
     height: 0;
     overflow: visible;
@@ -701,7 +701,7 @@ textarea {
     }
 
     .post hr {
-        border: 2px solid #E86A92;
+        border: 1px solid #E86A92;
     }
 }
 
