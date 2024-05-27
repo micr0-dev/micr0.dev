@@ -623,6 +623,7 @@ textarea {
 
 .article-post {
     text-align: left;
+    width: 70%;
 }
 
 .article-post img {
@@ -630,7 +631,6 @@ textarea {
     border-radius: 20px;
     margin: 10px 0;
 }
-
 
 .microblog-post {
     text-align: left;
