@@ -69,6 +69,8 @@ async function fetchPosts() {
                 postContainer = buildMicroblogPost(post);
             }
 
+            console.log(postContainer);
+
             blogContainer.appendChild(postContainer);
         });
 
