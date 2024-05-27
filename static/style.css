@@ -505,7 +505,7 @@ textarea {
 
 .post h1 {
     color: var(--primary-color);
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .post h2 {
@@ -598,7 +598,6 @@ textarea {
     padding: 10px;
 }
 
-/* draw a line for the line break */
 .post hr {
     margin: 20px -16px;
     border: 0;
@@ -639,7 +638,6 @@ textarea {
 .image-post img {
     width: 100%;
     border-radius: 20px;
-    margin: 10px 0;
 }
 
 .article-post {
