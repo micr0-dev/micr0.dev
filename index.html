@@ -34,6 +34,10 @@
             <path
                 d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.263.82-.583v-2.053c-3.338.725-4.042-1.417-4.042-1.417-.546-1.387-1.332-1.758-1.332-1.758-1.088-.744.082-.729.082-.729 1.204.087 1.837 1.237 1.837 1.237 1.07 1.835 2.807 1.305 3.492.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.333-5.466-5.932 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.007-.322 3.3 1.23.957-.266 1.983-.398 3.004-.403 1.02.005 2.047.137 3.005.403 2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.242 2.873.12 3.176.77.84 1.234 1.91 1.234 3.22 0 4.61-2.803 5.625-5.473 5.921.43.37.814 1.102.814 2.222v3.293c0 .322.22.698.825.581C20.565 21.798 24 17.3 24 12 24 5.37 18.63 0 12 0z" />
         </symbol>
+        <symbol id="cursor" viewbox="0 0 295.688 295.688">
+            <path xmlns="http://www.w3.org/2000/svg"
+                d="M291.294,239.713L189.603,138.024l74.055-31.949c5.745-2.479,9.348-8.265,9.038-14.515    c-0.312-6.25-4.468-11.651-10.431-13.551L19.554,0.707c-5.346-1.7-11.193-0.28-15.158,3.687C0.429,8.36-0.994,14.207,0.708,19.552    l77.303,242.713c1.898,5.963,7.301,10.12,13.551,10.432c6.25,0.311,12.035-3.294,14.514-9.039l31.949-74.054l101.69,101.69    c2.813,2.813,6.627,4.394,10.604,4.394c3.979,0,7.796-1.58,10.606-4.394l30.367-30.368    C297.152,255.068,297.152,245.571,291.294,239.713z" />
+        </symbol>
     </defs>
 </svg>
 
@@ -43,9 +47,16 @@
         <div class="container" id="about-container">
             <div class="clock" id="clock"></div>
             <h1>Micr0byte</h1>
+            <div id="avatar-container">
+                <img src="https://avatars.githubusercontent.com/u/26364458?v=4" alt="Avatar" id="avatar" class="avatar"
+                    width="30%">
+            </div>
+            <div id="counter" class="invisible">Clicks: 0</div>
+            <div id="message-box" class="container invisible">
+                <p><strong>WOWIE!~</strong>
+                    lets see how high you can actully go! send me your highest score!</p>
+            </div>
 
-            <img src="https://avatars.githubusercontent.com/u/26364458?v=4" alt="Avatar" id="avatar" class="avatar"
-                width="30%">
             <div class="textbox">
                 <p id="typewriter-text">
                 </p>
@@ -83,6 +94,34 @@
         </div>
 
     </div>
+
+    <div id="purchase-container" class="container invisible">
+        <button id="buy-cursor-1" class="appear">
+            <span class="cursor-icon"> <svg width="40" height="40">
+                    <use href="#cursor" />
+                </svg> </span>
+            Simple 10
+        </button>
+        <button id="buy-cursor-2" class="appear">
+            <span class="cursor-icon"> <svg width="40" height="40">
+                    <use href="#cursor" />
+                </svg> </span>
+            Shiny 50
+        </button>
+        <button id="buy-cursor-3" class="appear">
+            <span class="cursor-icon"> <svg width="40" height="40">
+                    <use href="#cursor" />
+                </svg> </span>
+            Golden 100
+        </button>
+        <button id="buy-cursor-4" class="appear">
+            <span class="cursor-icon"> <svg width="40" height="40">
+                    <use href="#cursor" />
+                </svg> </span>
+            Ruby 1,000
+        </button>
+    </div>
+
     <div id="scroll-arrow" onclick="scrollToContent()"><svg width="80" height="80" viewBox="-2.5 -2.5 55.665 55.665"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path xmlns="http://www.w3.org/2000/svg"

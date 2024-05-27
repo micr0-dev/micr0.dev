@@ -91,6 +91,10 @@ p {
     display: inline
 }
 
+strong {
+    font-weight: 700;
+}
+
 a {
     text-decoration: none;
     color: var(--primary-color);
@@ -161,12 +165,133 @@ button {
     border-radius: 50%;
     object-fit: cover;
     transition: transform 0.3s, fill 0.3s;
+    cursor: pointer;
 }
 
 .avatar:hover {
-    transform: scale(1.075) rotate(-20deg);
+    transform: scale(1.02) rotate(-20deg);
 }
 
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.075);
+    }
+}
+
+#avatar-container.shake {
+    animation: shake 0.1s;
+}
+
+.particle {
+    position: absolute;
+    color: var(--text-color);
+    animation: floatUp 1s forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+#purchase-container {
+    position: absolute;
+    top: 50%;
+    left: -150px;
+    width: auto;
+    max-width: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-50%);
+    transition: left 0.5s ease;
+}
+
+#purchase-container.visible {
+    left: 20px;
+}
+
+#purchase-container button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    color: var(--container-background-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: 700;
+    position: relative;
+    transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+}
+
+
+#purchase-container button .cursor-icon {
+    margin: 5px;
+    font-size: 1.5em;
+    fill: var(--container-background-color)
+}
+
+#purchase-container button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+#purchase-container button:not(:disabled):hover {
+    transform: scale(1.05);
+    background-color: var(--highlighted-primary);
+}
+
+#purchase-container button:active {
+    transform: scale(0.95);
+}
+
+#message-box {
+    position: fixed;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--primary-color);
+    padding: 20px;
+    transition: top 0.5s ease, opacity 0.5s ease;
+    width: auto;
+    max-width: auto;
+}
+
+#message-box.visible {
+    top: 50px;
+}
+
+#message-box.gone {
+    opacity: 0;
+}
+
+#message-box p {
+    color: var(--text-color);
+}
+
+#message-box strong {
+    color: var(--primary-color);
+}
 
 .invisible {
     visibility: hidden;
@@ -304,6 +429,10 @@ button {
 
     .project-card:hover {
         border: 2px solid #E86A92;
+    }
+
+    #purchase-container {
+        border: 2px solid #444;
     }
 }
 

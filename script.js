@@ -181,3 +181,144 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', githubProjects);
+
+document.addEventListener('DOMContentLoaded', function () {
+    let clickCount = 0;
+    let isCompleted = false;
+    const avatar = document.getElementById('avatar');
+    const counter = document.getElementById('counter');
+    const avatarContainer = document.getElementById('avatar-container');
+    const purchaseContainer = document.getElementById('purchase-container');
+    const buyCursor1Btn = document.getElementById('buy-cursor-1');
+    const buyCursor2Btn = document.getElementById('buy-cursor-2');
+    const buyCursor3Btn = document.getElementById('buy-cursor-3');
+    const buyCursor4Btn = document.getElementById('buy-cursor-4');
+    const messageBox = document.getElementById('message-box');
+
+    const cursors = [
+        { count: 0, strength: 1, cost: 10, speed: 1, interval: null },
+        { count: 0, strength: 7, cost: 50, speed: 2, interval: null },
+        { count: 0, strength: 30, cost: 100, speed: 4, interval: null },
+        { count: 0, strength: 1000, cost: 1000, speed: 16, interval: null },
+    ];
+
+    function updateButtonStates() {
+        buyCursor1Btn.disabled = clickCount < 10;
+        buyCursor2Btn.disabled = clickCount < 50;
+        buyCursor3Btn.disabled = clickCount < 100;
+        buyCursor4Btn.disabled = clickCount < 1000;
+    }
+
+
+    function generateParticle(clickValue) {
+        const particle = document.createElement('span');
+        particle.innerText = `+${clickValue}`;
+        particle.classList.add('particle');
+
+        const rect = avatar.getBoundingClientRect();
+        const positionX = rect.width * Math.random() + rect.left;
+        particle.style.left = `${positionX}px`;
+        particle.style.top = `${rect.top}px`;
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 1000);
+    }
+
+    function startAutoClick(cursor) {
+        if (cursor.interval) {
+            clearInterval(cursor.interval);
+        }
+        cursor.interval = setInterval(() => {
+            clickCount += cursor.strength;
+            counter.innerText = `Clicks: ${clickCount}`;
+            generateParticle(cursor.strength);
+            updateButtonStates();
+
+        }, (1000 * cursor.speed) / cursor.count);
+    }
+
+    avatar.addEventListener('click', function () {
+        clickCount++;
+        counter.innerText = `Clicks: ${clickCount}`;
+        updateButtonStates();
+
+        avatarContainer.classList.add('shake');
+        setTimeout(() => {
+            avatarContainer.classList.remove('shake');
+        }, 101);
+
+        generateParticle(1);
+
+        if (clickCount === 1) {
+            counter.classList.remove('invisible');
+        }
+
+        if (clickCount >= 10) {
+            purchaseContainer.classList.remove('invisible');
+            purchaseContainer.classList.add('visible');
+        }
+    });
+
+    buyCursor1Btn.addEventListener('click', function () {
+        const cursor = cursors[0];
+
+        if (clickCount >= cursor.cost) {
+            clickCount -= cursor.cost;
+            cursor.count++;
+            counter.innerText = `Clicks: ${clickCount}`;
+            updateButtonStates();
+            startAutoClick(cursor);
+        }
+    });
+
+    buyCursor2Btn.addEventListener('click', function () {
+        const cursor = cursors[1];
+
+        if (clickCount >= cursor.cost) {
+            clickCount -= cursor.cost;
+            cursor.count++;
+            counter.innerText = `Clicks: ${clickCount}`;
+            updateButtonStates();
+            startAutoClick(cursor);
+        }
+    });
+
+    buyCursor3Btn.addEventListener('click', function () {
+        const cursor = cursors[2];
+
+        if (clickCount >= cursor.cost) {
+            clickCount -= cursor.cost;
+            cursor.count++;
+            counter.innerText = `Clicks: ${clickCount}`;
+            updateButtonStates();
+            startAutoClick(cursor);
+        }
+    });
+
+    buyCursor4Btn.addEventListener('click', function () {
+        const cursor = cursors[3];
+
+        if (!isCompleted) {
+            isCompleted = true;
+            messageBox.classList.remove('invisible');
+            messageBox.classList.add('visible');
+            setTimeout(() => {
+                messageBox.classList.add('gone');
+            }, 6000);
+        }
+
+        if (clickCount >= cursor.cost) {
+            clickCount -= cursor.cost;
+            cursor.count++;
+            counter.innerText = `Clicks: ${clickCount}`;
+            updateButtonStates();
+            startAutoClick(cursor);
+        }
+    });
+
+    updateButtonStates();
+
+});
