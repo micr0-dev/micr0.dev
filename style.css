@@ -472,4 +472,19 @@ button {
     .icons a {
         margin: 0 5px;
     }
+
+    #purchase-container.visible {
+        left: 10px;
+    }
+
+    #purchase-container button {
+        width: 60px;
+        height: 60px;
+        font-size: 0.6em;
+    }
+
+    #purchase-container svg {
+        width: 30px;
+        height: 30px;
+    }
 }
