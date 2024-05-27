@@ -54,6 +54,7 @@ function buildMicroblogPost(post) {
 }
 
 async function fetchPosts() {
+    const blogContainer = document.getElementById('blog-container');
     try {
         const response = await fetch('/api/posts');
         const posts = await response.json();
@@ -68,7 +69,6 @@ async function fetchPosts() {
                 postContainer = buildMicroblogPost(post);
             }
 
-            const blogContainer = document.getElementById('blog-container');
             blogContainer.appendChild(postContainer);
         });
 
