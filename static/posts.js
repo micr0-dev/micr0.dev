@@ -28,8 +28,11 @@ function buildArticlePost(post) {
     const titleElement = document.createElement('h1');
     titleElement.textContent = post.title;
 
-    const descriptionElement = document.createElement('h2');
-    descriptionElement.textContent = post.description;
+    const descriptionElement = document.createElement('div');
+    descriptionElement.classList.add('textbox');
+    const descriptionText = document.createElement('p');
+    descriptionText.textContent = post.description;
+    descriptionElement.appendChild(descriptionText);
 
     const lineBreak = document.createElement('br');
     postContainer.appendChild(lineBreak);
@@ -58,27 +61,14 @@ function buildMicroblogPost(post) {
     return postContainer;
 }
 
-// function to add rating in hearts to the post as a button
-function addRating(postId) {
+// function to add rating in hearts and a number to the post as a button
+function addRating(post) {
     const ratingContainer = document.createElement('div');
     ratingContainer.classList.add('rating-container');
 
     const ratingButton = document.createElement('button');
     ratingButton.classList.add('rating-button');
-    ratingButton.textContent = '❤️';
-    ratingButton.addEventListener('click', async () => {
-        try {
-            const response = await fetch(`/api/posts/${postId}/rating`, {
-                method: 'POST',
-            });
-
-            if (response.ok) {
-                ratingButton.disabled = true;
-            }
-        } catch (error) {
-            console.error('Error rating post:', error);
-        }
-    });
+    ratingButton.textContent = post.rating;
 
     ratingContainer.appendChild(ratingButton);
 
@@ -108,10 +98,10 @@ async function fetchPosts() {
                 postContainer = buildMicroblogPost(post);
             }
 
-            if (post.rating) {
-                const rating = addRating(post.id);
-                postContainer.appendChild(rating);
-            }
+
+            // const rating = addRating(post);
+            // postContainer.appendChild(rating);
+
 
             console.log(postContainer);
 
