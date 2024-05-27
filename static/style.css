@@ -499,6 +499,7 @@ textarea {
     width: 80%;
     max-width: 600px;
     margin: 20px auto;
+    padding-top: 0%;
 }
 
 /* All the formatting for markdown */
@@ -658,6 +659,7 @@ textarea {
 
 .microblog-post {
     text-align: left;
+    padding: 30px;
 }
 
 /* Dark Mode */
