@@ -7,6 +7,7 @@ import (
 // Post represents a blog post in the database.
 type Post struct {
 	ID          int    `db:"id" json:"id"`
+	Type        string `db:"type" json:"type"`
 	Title       string `db:"title" json:"title"`
 	Description string `db:"description" json:"description"`
 	Thumbnail   string `db:"thumbnail" json:"thumbnail"`
@@ -19,6 +20,7 @@ func InitializeDatabase(db *sqlx.DB) {
 	_, err := db.Exec(`
         CREATE TABLE IF NOT EXISTS posts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+			type TEXT NOT NULL,
             title TEXT NOT NULL,
 			description TEXT NOT NULL,
             content TEXT NOT NULL,
@@ -47,7 +49,7 @@ func GetPostByID(db *sqlx.DB, id int) (Post, error) {
 
 // CreatePost creates a new post in the database.
 func CreatePost(db *sqlx.DB, post *Post) (int64, error) {
-	result, err := db.Exec("INSERT INTO posts (title, description, content, thumbnail, rating) VALUES (?, ?, ?, ?, ?)", post.Title, post.Description, post.Content, post.Thumbnail, post.Rating)
+	result, err := db.Exec("INSERT INTO posts (type, title, description, content, thumbnail, rating) VALUES (?, ?, ?, ?, ?, ?)", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating)
 	if err != nil {
 		return 0, err
 	}
@@ -56,7 +58,7 @@ func CreatePost(db *sqlx.DB, post *Post) (int64, error) {
 
 // UpdatePost updates an existing post in the database.
 func UpdatePost(db *sqlx.DB, id int, post *Post) (int64, error) {
-	_, err := db.Exec("UPDATE posts SET title=?, description=?, content=?, thumbnail=?, rating=? WHERE id=?", post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, id)
+	_, err := db.Exec("UPDATE posts SET type=?, title=?, description=?, content=?, thumbnail=?, rating=? WHERE id=?", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, id)
 	return int64(id), err
 }
 

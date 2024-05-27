@@ -12,23 +12,74 @@
         <h1>add a new post uwu~</h1>
 
         <form id="new-post-form">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" class="textbox" required><br><br>
+            <label for="post-type">Select Post Type:</label><br>
+            <select id="post-type" name="post-type" class="textbox" required>
+                <option value="image">Image</option>
+                <option value="article">Article</option>
+                <option value="microblog">Microblog</option>
+            </select><br><br>
 
-            <label for="content">Content (Markdown):</label><br>
-            <textarea id="content" name="content" class="textbox" rows="10" cols="60" required></textarea><br><br>
+            <div id="common-fields">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" class="textbox"><br><br>
+
+                <label for="thumbnail">Thumbnail URL:</label><br>
+                <input type="text" id="thumbnail" name="thumbnail" class="textbox"><br><br>
+            </div>
+
+            <div id="description-field">
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" class="textbox" rows="5" cols="60"></textarea><br><br>
+            </div>
+
+            <div id="content-field">
+                <label for="content">Content (Markdown):</label><br>
+                <textarea id="content" name="content" class="textbox" rows="10" cols="60"></textarea><br><br>
+            </div>
 
             <button type="submit">post me!~</button>
         </form>
     </div>
 
+    <div id="blogContainer" class="container">
+        <h1>Posts</h1>
+        <div id="posts-container"></div>
+    </div>
+    <script type="module" src="posts.js"></script>
+
     <script>
         const form = document.getElementById('new-post-form');
+        const postTypeSelector = document.getElementById('post-type');
+        const commonFields = document.getElementById('common-fields');
+        const descriptionField = document.getElementById('description-field');
+        const contentField = document.getElementById('content-field');
+
+        function updateFormFields() {
+            const selectedType = postTypeSelector.value;
+
+            commonFields.style.display = selectedType === 'image' || selectedType === 'article' ? 'block' : 'none';
+            descriptionField.style.display = selectedType === 'article' ? 'block' : 'none';
+            contentField.style.display = selectedType === 'article' || selectedType === 'microblog' ? 'block' : 'none';
+
+            document.getElementById('title').required = selectedType === 'image' || selectedType === 'article';
+            document.getElementById('thumbnail').required = selectedType === 'image' || selectedType === 'article';
+            document.getElementById('description').required = selectedType === 'article';
+            document.getElementById('content').required = selectedType === 'article' || selectedType === 'microblog';
+        }
+
+        postTypeSelector.addEventListener('change', updateFormFields);
+        document.addEventListener('DOMContentLoaded', updateFormFields);
+
         form.addEventListener('submit', async (event) => {
             event.preventDefault(); // Prevent default form submission
 
-            const title = document.getElementById('title').value;
-            const content = document.getElementById('content').value;
+            const postData = {
+                type: document.getElementById('post-type').value,
+                title: document.getElementById('title').value,
+                thumbnail: document.getElementById('thumbnail').value,
+                description: document.getElementById('description').value,
+                content: document.getElementById('content').value
+            };
 
             try {
                 const response = await fetch('/api/posts', {
@@ -36,12 +87,13 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ title, content })
+                    body: JSON.stringify(postData)
                 });
 
                 if (response.ok) {
                     alert('Post created successfully!');
                     form.reset(); // Clear the form
+                    updateFormFields(); // Update fields after reset
                 } else {
                     const data = await response.json();
                     alert(`Error creating post: ${data.error}`);

@@ -1,5 +1,3 @@
-import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
-
 let text = "";
 let index = 0;
 let scrollArrowMaxHeight = 0;
@@ -339,46 +337,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateButtonStates();
 
-});
-
-async function fetchPosts() {
-    try {
-        const response = await fetch('/api/posts');
-        const posts = await response.json();
-
-        console.log(posts);
-
-        const postsContainer = document.getElementById('posts-container');
-        const blogContainer = document.getElementById('blog-container');
-        postsContainer.innerHTML = '';
-
-        posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.className = 'post';
-
-            const titleElement = document.createElement('h2');
-            titleElement.textContent = post.title;
-            postElement.appendChild(titleElement);
-
-            const contentElement = document.createElement('div');
-            contentElement.innerHTML = marked(post.content);
-            postElement.appendChild(contentElement);
-
-            postsContainer.appendChild(postElement);
-        });
-
-        // Hide if no posts are found
-        if (!posts || posts.length === 0) {
-            blogContainer.classList.add('invisible');
-        }
-
-    } catch (error) {
-        blogContainer.classList.add('invisible');
-        console.error('Error fetching posts:', error);
-    }
-}
-
-// Make sure to call the function when the DOM is ready
-document.addEventListener('DOMContentLoaded', (event) => {
-    fetchPosts();
 });
