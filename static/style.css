@@ -637,12 +637,12 @@ textarea {
 
 .image-post {
     text-align: left;
-    padding: 0%;
 }
 
 .image-post img {
     width: 100%;
     border-radius: 20px;
+    margin: 0%;
 }
 
 .article-post {
