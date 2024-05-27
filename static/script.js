@@ -349,6 +349,7 @@ async function fetchPosts() {
         console.log(posts);
 
         const postsContainer = document.getElementById('posts-container');
+        const blogContainer = document.getElementById('blog-container');
         postsContainer.innerHTML = '';
 
         posts.forEach(post => {
@@ -368,12 +369,12 @@ async function fetchPosts() {
 
         // Handle case if no posts are found
         if (!posts || posts.length === 0) {
-            postsContainer.style.display = 'none';
+            blogContainer.style.display = 'none';
         }
 
     } catch (error) {
+        blogContainer.style.display = 'none';
         console.error('Error fetching posts:', error);
-        postsContainer.style.display = 'none';
     }
 }
 
