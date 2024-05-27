@@ -1,3 +1,5 @@
+import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+
 let text = "";
 let index = 0;
 let scrollArrowMaxHeight = 0;
@@ -363,13 +365,18 @@ async function fetchPosts() {
 
             postsContainer.appendChild(postElement);
         });
+
+        // Handle case if no posts are found
+        if (!posts || posts.length === 0) {
+            postsContainer.style.display = 'none';
+        }
+
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
-
-    if (!response || !posts || posts.length === 0) {
-        document.getElementById('posts-container').style.display = 'none';
-    }
 }
 
-document.addEventListener('DOMContentLoaded', fetchPosts);
+// Make sure to call the function when the DOM is ready
+document.addEventListener('DOMContentLoaded', (event) => {
+    fetchPosts();
+});
