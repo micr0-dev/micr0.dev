@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
         buyCursor4Btn.disabled = clickCount < 1000;
     }
 
-
+    // FIXME: Generate particles on the avatar instead of the body
     function generateParticle(clickValue) {
         const particle = document.createElement('span');
         particle.innerText = `+${clickValue}`;

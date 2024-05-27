@@ -100,10 +100,8 @@ async function fetchPosts() {
                 postContainer = buildMicroblogPost(post);
             }
 
-
             // const rating = addRating(post);
             // postContainer.appendChild(rating);
-
 
             console.log(postContainer);
 
