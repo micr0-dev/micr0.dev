@@ -33,6 +33,7 @@ function buildArticlePost(post) {
     const descriptionText = document.createElement('p');
     descriptionText.textContent = post.description;
     descriptionElement.appendChild(descriptionText);
+    // TODO: Add reading time
 
     const lineBreak = document.createElement('br');
     postContainer.appendChild(lineBreak);
@@ -42,6 +43,7 @@ function buildArticlePost(post) {
 
     postContainer.appendChild(titleElement);
     postContainer.appendChild(imageElement);
+    postContainer.appendChild(lineBreak);
     postContainer.appendChild(descriptionElement);
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
@@ -61,7 +63,7 @@ function buildMicroblogPost(post) {
     return postContainer;
 }
 
-// function to add rating in hearts and a number to the post as a button
+// TODO: Implement rating system
 function addRating(post) {
     const ratingContainer = document.createElement('div');
     ratingContainer.classList.add('rating-container');
