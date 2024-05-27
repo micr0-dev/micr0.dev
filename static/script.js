@@ -373,6 +373,7 @@ async function fetchPosts() {
 
     } catch (error) {
         console.error('Error fetching posts:', error);
+        postsContainer.style.display = 'none';
     }
 }
 

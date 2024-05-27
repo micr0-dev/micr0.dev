@@ -30,7 +30,8 @@ func main() {
 	router.GET("/posts", postsHandler.GetPosts)
 	router.GET("/posts/:id", postsHandler.GetPostByID)
 	router.POST("/posts", postsHandler.CreatePost)
-	// ... (Add more endpoints for updating, deleting posts)
+	router.PUT("/posts/:id", postsHandler.UpdatePost)
+	router.DELETE("/posts/:id", postsHandler.DeletePost)
 
 	// Serve static files (from the 'static' directory)
 	router.Static("/static", "./static")
