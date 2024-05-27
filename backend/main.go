@@ -27,9 +27,9 @@ func main() {
 
 	// API endpoints
 	postsHandler := handlers.NewPostHandler(db) // Pass the database connection
-	router.GET("/api/posts", postsHandler.GetPosts)
-	router.GET("/api/posts/:id", postsHandler.GetPostByID)
-	router.POST("/api/posts", postsHandler.CreatePost)
+	router.GET("/posts", postsHandler.GetPosts)
+	router.GET("/posts/:id", postsHandler.GetPostByID)
+	router.POST("/posts", postsHandler.CreatePost)
 	// ... (Add more endpoints for updating, deleting posts)
 
 	// Serve static files (from the 'static' directory)
