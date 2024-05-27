@@ -11,9 +11,6 @@ function buildImagePost(post) {
     const titleElement = document.createElement('h2');
     titleElement.textContent = post.title;
 
-    const descriptionElement = document.createElement('p');
-    descriptionElement.textContent = post.description;
-
     postContainer.appendChild(imageElement);
     postContainer.appendChild(titleElement);
     postContainer.appendChild(descriptionElement);
@@ -27,6 +24,7 @@ function buildArticlePost(post) {
 
     const imageElement = document.createElement('img');
     imageElement.src = post.thumbnail;
+    imageElement.alt = post.title;
 
     const titleElement = document.createElement('h2');
     titleElement.textContent = post.title;
@@ -38,6 +36,8 @@ function buildArticlePost(post) {
     contentElement.innerHTML = marked(post.content);
 
     postContainer.appendChild(titleElement);
+    postContainer.appendChild(imageElement);
+    postContainer.appendChild(descriptionElement);
     postContainer.appendChild(contentElement);
 
     return postContainer;
@@ -50,7 +50,6 @@ function buildMicroblogPost(post) {
     const contentElement = document.createElement('div');
     contentElement.innerHTML = marked(post.content);
 
-    postContainer.appendChild(titleElement);
     postContainer.appendChild(contentElement);
 
     return postContainer;
