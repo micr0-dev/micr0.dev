@@ -43,13 +43,13 @@
 
     <div id="blog-container">
     </div>
-    <script type="module" src="posts.js">
+    <script type="module" src="posts.js"></script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             fetchPosts();
         });
-    </script>
 
-    <script>
         const form = document.getElementById('new-post-form');
         const postTypeSelector = document.getElementById('post-type');
         const commonFields = document.getElementById('common-fields');
