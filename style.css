@@ -250,8 +250,18 @@ button {
     }
 }
 
+#counter {
+    color: var(--text-color);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#counter.visible {
+    opacity: 1;
+}
+
 #purchase-container {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: -150px;
     width: auto;

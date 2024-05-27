@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
         generateParticle(1);
 
         if (clickCount === 1) {
-            counter.classList.remove('invisible');
+            counter.classList.add('visible');
         }
 
         if (clickCount >= 10) {
