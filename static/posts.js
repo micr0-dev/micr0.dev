@@ -59,6 +59,8 @@ async function fetchPosts() {
         const response = await fetch('/api/posts');
         const posts = await response.json();
 
+        console.log(posts);
+
         posts.forEach(post => {
             let postContainer;
             if (post.type === 'image') {
