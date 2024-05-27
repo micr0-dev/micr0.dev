@@ -479,10 +479,6 @@ textarea {
 }
 
 #blog-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     width: 100%;
 }
 
@@ -631,7 +627,7 @@ textarea {
 
 .article-post {
     text-align: left;
-    width: 100%;
+    width: 80%;
 }
 
 .article-post img {
