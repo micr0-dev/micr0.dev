@@ -478,8 +478,14 @@ textarea {
     transform: scale(0.95);
 }
 
+/* Column layout */
 #blog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
+    overflow: hidden;
 }
 
 .post {
