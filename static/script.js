@@ -364,7 +364,11 @@ async function fetchPosts() {
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
+
+    // hide if no posts
+    if (!response || !posts || posts.length === 0) {
+        document.getElementById('posts-container').style.display = 'none';
+    }
 }
 
-// Fetch and display posts when the page loads
-window.onload = fetchPosts;
+document.addEventListener('DOMContentLoaded', fetchPosts);
