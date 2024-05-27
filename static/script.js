@@ -339,6 +339,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+import marked from 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+
 async function fetchPosts() {
     try {
         const response = await fetch('/api/posts');
@@ -367,7 +369,6 @@ async function fetchPosts() {
         console.error('Error fetching posts:', error);
     }
 
-    // hide if no posts
     if (!response || !posts || posts.length === 0) {
         document.getElementById('posts-container').style.display = 'none';
     }
