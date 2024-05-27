@@ -1,3 +1,5 @@
+import marked from 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+
 let text = "";
 let index = 0;
 let scrollArrowMaxHeight = 0;
@@ -338,8 +340,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateButtonStates();
 
 });
-
-import marked from 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
 
 async function fetchPosts() {
     try {
