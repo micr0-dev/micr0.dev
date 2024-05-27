@@ -498,13 +498,20 @@ textarea {
 
 .image-post img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 20px;
     margin: 10px 0;
 }
 
 .article-post {
     text-align: left;
 }
+
+.article-post img {
+    width: 50%;
+    border-radius: 20px;
+    margin: 10px 0;
+}
+
 
 .microblog-post {
     text-align: left;

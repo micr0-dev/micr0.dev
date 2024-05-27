@@ -8,11 +8,11 @@ function buildImagePost(post) {
     imageElement.src = post.thumbnail;
     imageElement.alt = post.title;
 
-    const titleElement = document.createElement('h2');
+    const titleElement = document.createElement('h1');
     titleElement.textContent = post.title;
 
-    postContainer.appendChild(imageElement);
     postContainer.appendChild(titleElement);
+    postContainer.appendChild(imageElement);
 
     return postContainer;
 }
@@ -25,11 +25,14 @@ function buildArticlePost(post) {
     imageElement.src = post.thumbnail;
     imageElement.alt = post.title;
 
-    const titleElement = document.createElement('h2');
+    const titleElement = document.createElement('h1');
     titleElement.textContent = post.title;
 
-    const descriptionElement = document.createElement('h3');
+    const descriptionElement = document.createElement('h2');
     descriptionElement.textContent = post.description;
+
+    const lineBreak = document.createElement('br');
+    postContainer.appendChild(lineBreak);
 
     const contentElement = document.createElement('div');
     contentElement.innerHTML = marked(post.content);
@@ -37,6 +40,7 @@ function buildArticlePost(post) {
     postContainer.appendChild(titleElement);
     postContainer.appendChild(imageElement);
     postContainer.appendChild(descriptionElement);
+    postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
 
     return postContainer;
@@ -52,6 +56,33 @@ function buildMicroblogPost(post) {
     postContainer.appendChild(contentElement);
 
     return postContainer;
+}
+
+// function to add rating in hearts to the post as a button
+function addRating(postId) {
+    const ratingContainer = document.createElement('div');
+    ratingContainer.classList.add('rating-container');
+
+    const ratingButton = document.createElement('button');
+    ratingButton.classList.add('rating-button');
+    ratingButton.textContent = '❤️';
+    ratingButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch(`/api/posts/${postId}/rating`, {
+                method: 'POST',
+            });
+
+            if (response.ok) {
+                ratingButton.disabled = true;
+            }
+        } catch (error) {
+            console.error('Error rating post:', error);
+        }
+    });
+
+    ratingContainer.appendChild(ratingButton);
+
+    return ratingContainer;
 }
 
 async function fetchPosts() {
@@ -77,6 +108,11 @@ async function fetchPosts() {
                 postContainer = buildMicroblogPost(post);
             }
 
+            if (post.rating) {
+                const rating = addRating(post.id);
+                postContainer.appendChild(rating);
+            }
+
             console.log(postContainer);
 
             blogContainer.appendChild(postContainer);
@@ -88,7 +124,6 @@ async function fetchPosts() {
     }
 }
 
-// Make sure to call the function when the DOM is ready
 document.addEventListener('DOMContentLoaded', (event) => {
     fetchPosts();
 });
