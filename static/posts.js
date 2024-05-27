@@ -34,8 +34,8 @@ function buildArticlePost(post) {
     const descriptionElement = document.createElement('h3');
     descriptionElement.textContent = post.description;
 
-    const contentElement = document.createElement('p');
-    contentElement.textContent = marked(post.content);
+    const contentElement = document.createElement('div');
+    contentElement.innerHTML = marked(post.content);
 
     postContainer.appendChild(titleElement);
     postContainer.appendChild(contentElement);
@@ -47,8 +47,8 @@ function buildMicroblogPost(post) {
     const postContainer = document.createElement('div');
     postContainer.classList.add('post', 'microblog-post');
 
-    const contentElement = document.createElement('p');
-    contentElement.textContent = marked(post.content);
+    const contentElement = document.createElement('div');
+    contentElement.innerHTML = marked(post.content);
 
     postContainer.appendChild(titleElement);
     postContainer.appendChild(contentElement);
