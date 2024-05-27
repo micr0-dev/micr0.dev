@@ -32,7 +32,7 @@ function buildArticlePost(post) {
     descriptionElement.textContent = post.description;
     // TODO: Add reading time
 
-    const lineBreak = document.createElement('br');
+    const lineBreak = document.createElement('hr');
     postContainer.appendChild(lineBreak);
 
     const contentElement = document.createElement('div');
