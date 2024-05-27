@@ -599,11 +599,13 @@ textarea {
 }
 
 /* draw a line for the line break */
-.post br {
-    display: block;
-    margin: 10px 0;
-    content: "";
-    border-bottom: 1px solid var(--primary-color);
+.post hr {
+    margin: 20px -16px;
+    border: 0;
+    border-top: 2px solid #FF69B4;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
 }
 
 .post .center {
@@ -696,6 +698,10 @@ textarea {
     .post {
         border: 2px solid #444;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .post hr {
+        border: 2px solid #E86A92;
     }
 }
 
