@@ -28,11 +28,8 @@ function buildArticlePost(post) {
     const titleElement = document.createElement('h1');
     titleElement.textContent = post.title;
 
-    const descriptionElement = document.createElement('div');
-    descriptionElement.classList.add('textbox');
-    const descriptionText = document.createElement('p');
-    descriptionText.textContent = post.description;
-    descriptionElement.appendChild(descriptionText);
+    const descriptionElement = document.createElement('h2');
+    descriptionElement.textContent = post.description;
     // TODO: Add reading time
 
     const lineBreak = document.createElement('br');
@@ -43,7 +40,6 @@ function buildArticlePost(post) {
 
     postContainer.appendChild(titleElement);
     postContainer.appendChild(imageElement);
-    postContainer.appendChild(lineBreak);
     postContainer.appendChild(descriptionElement);
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);

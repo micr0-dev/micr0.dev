@@ -598,6 +598,14 @@ textarea {
     padding: 10px;
 }
 
+/* draw a line for the line break */
+.post br {
+    display: block;
+    margin: 10px 0;
+    content: "";
+    border-bottom: 1px solid var(--primary-color);
+}
+
 .post .center {
     text-align: center;
 }

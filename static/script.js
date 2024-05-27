@@ -52,7 +52,7 @@ async function getFileSize(owner, repo, path, branch = 'main') {
 }
 
 async function updateFilesize() {
-    const files = ['static/index.html', 'static/style.css', 'static/script.js', 'static/background.js', 'static/404.html']; // Files to get the size of
+    const files = ['static/index.html', 'static/style.css', 'static/script.js', 'static/background.js', 'static/404.html', 'static/posts.js', 'backend/main.go', 'backend/models/post.go', 'backend/handlers/posts.go']; // Files to get the size of
 
     const repo = 'micr0.dev'; // Repository to get the files from
 
