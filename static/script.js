@@ -344,6 +344,8 @@ async function fetchPosts() {
         const response = await fetch('/api/posts');
         const posts = await response.json();
 
+        console.log(posts);
+
         const postsContainer = document.getElementById('posts-container');
         postsContainer.innerHTML = '';
 
