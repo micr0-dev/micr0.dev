@@ -1,5 +1,3 @@
-import marked from 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
-
 let text = "";
 let index = 0;
 let scrollArrowMaxHeight = 0;
