@@ -13,7 +13,6 @@ function buildImagePost(post) {
 
     postContainer.appendChild(imageElement);
     postContainer.appendChild(titleElement);
-    postContainer.appendChild(descriptionElement);
 
     return postContainer;
 }
