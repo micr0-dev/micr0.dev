@@ -61,6 +61,11 @@ async function fetchPosts() {
 
         console.log(posts);
 
+        if (!posts || posts.length === 0) {
+            blogContainer.classList.add('invisible');
+            return;
+        }
+
         posts.forEach(post => {
             let postContainer;
             if (post.type === 'image') {
@@ -75,11 +80,6 @@ async function fetchPosts() {
 
             blogContainer.appendChild(postContainer);
         });
-
-        // Hide if no posts are found
-        if (!posts || posts.length === 0) {
-            blogContainer.classList.add('invisible');
-        }
 
     } catch (error) {
         blogContainer.classList.add('invisible');
