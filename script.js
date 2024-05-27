@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', githubProjects);
 
 document.addEventListener('DOMContentLoaded', function () {
-    let clickCount = 990;
+    let clickCount = 0;
     let isCompleted = false;
     const avatar = document.getElementById('avatar');
     const counter = document.getElementById('counter');
