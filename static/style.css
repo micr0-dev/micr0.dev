@@ -454,6 +454,26 @@ button {
     color: var(--primary-color);
 }
 
+input {
+    color: var(--text-color);
+}
+
+textarea {
+    color: var(--text-color);
+}
+
+#new-post-form button {
+    color: var(--container-background-color);
+    background-color: var(--primary-color);
+    border-radius: 99999px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#new-post-form button:hover {
+    background-color: var(--highlighted-primary);
+    transform: scale(1.05);
+}
+
 /* Dark Mode */
 
 @media screen and (prefers-color-scheme: dark) {

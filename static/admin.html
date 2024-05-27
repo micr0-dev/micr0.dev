@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>new post uwu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="magneticCanvas"></canvas>
+    <div class="container">
+        <h1>add a new post uwu~</h1>
+
+        <form id="new-post-form">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" class="textbox" required><br><br>
+
+            <label for="content">Content (Markdown):</label><br>
+            <textarea id="content" name="content" class="textbox" rows="10" cols="60" required></textarea><br><br>
+
+            <button type="submit">post me!~</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('new-post-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+
+            try {
+                const response = await fetch('/api/posts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title, content })
+                });
+
+                if (response.ok) {
+                    alert('Post created successfully!');
+                    form.reset(); // Clear the form
+                } else {
+                    const data = await response.json();
+                    alert(`Error creating post: ${data.error}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while creating the post.');
+            }
+        });
+    </script>
+    <script src="background.js"></script>
+</body>
+
+</html>

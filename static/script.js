@@ -338,3 +338,33 @@ document.addEventListener('DOMContentLoaded', function () {
     updateButtonStates();
 
 });
+
+async function fetchPosts() {
+    try {
+        const response = await fetch('/api/posts');
+        const posts = await response.json();
+
+        const postsContainer = document.getElementById('posts-container');
+        postsContainer.innerHTML = '';
+
+        posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+
+            const titleElement = document.createElement('h2');
+            titleElement.textContent = post.title;
+            postElement.appendChild(titleElement);
+
+            const contentElement = document.createElement('div');
+            contentElement.innerHTML = marked(post.content);
+            postElement.appendChild(contentElement);
+
+            postsContainer.appendChild(postElement);
+        });
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+    }
+}
+
+// Fetch and display posts when the page loads
+window.onload = fetchPosts;
