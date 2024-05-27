@@ -474,6 +474,42 @@ textarea {
     transform: scale(1.05);
 }
 
+#new-post-form button:active {
+    transform: scale(0.95);
+}
+
+.post {
+    position: relative;
+    background-color: var(--container-background-color);
+    border: 2px solid #FFD1DC;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.post h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.image-post img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.article-post {
+    text-align: left;
+}
+
+.microblog-post {
+    text-align: left;
+}
+
 /* Dark Mode */
 
 @media screen and (prefers-color-scheme: dark) {
@@ -510,6 +546,11 @@ textarea {
 
     .ssl-secure {
         border: 2px solid #444;
+    }
+
+    .post {
+        border: 2px solid #444;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 }
 
