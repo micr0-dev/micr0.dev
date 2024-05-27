@@ -367,13 +367,13 @@ async function fetchPosts() {
             postsContainer.appendChild(postElement);
         });
 
-        // Handle case if no posts are found
+        // Hide if no posts are found
         if (!posts || posts.length === 0) {
-            blogContainer.style.display = 'none';
+            blogContainer.classList.add('invisible');
         }
 
     } catch (error) {
-        blogContainer.style.display = 'none';
+        blogContainer.classList.add('invisible');
         console.error('Error fetching posts:', error);
     }
 }
