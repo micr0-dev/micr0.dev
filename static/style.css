@@ -634,6 +634,7 @@ textarea {
 .article-post {
     text-align: left;
     width: 80%;
+    max-width: 100%;
 }
 
 .article-post img {
