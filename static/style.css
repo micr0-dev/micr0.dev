@@ -662,6 +662,14 @@ textarea {
     padding: 30px;
 }
 
+.post-id {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--backgorund-color-secondary);
+}
+
 /* Dark Mode */
 
 @media screen and (prefers-color-scheme: dark) {

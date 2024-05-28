@@ -73,6 +73,14 @@ function addRating(post) {
     return ratingContainer;
 }
 
+function addId(post) {
+    const idElement = document.createElement('div');
+    idElement.classList.add('post-id');
+    idElement.textContent = "#" + post.id;
+
+    return idElement;
+}
+
 async function fetchPosts() {
     let type = 'all';
     const feedContainer = document.getElementById('feed-container');
@@ -119,6 +127,9 @@ async function fetchPosts() {
 
             // const rating = addRating(post);
             // postContainer.appendChild(rating);
+
+            const idElement = addId(post);
+            postContainer.appendChild(idElement);
 
             if (postContainer) {
                 console.log(postContainer);
