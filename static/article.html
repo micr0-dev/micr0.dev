@@ -21,37 +21,36 @@
 <body>
     <canvas id="magneticCanvas"></canvas>
 
-
-
     <div id="feed-container" class="standalone">
     </div>
 
-    <img src="https://avatars.githubusercontent.com/u/26364458?v=4" alt="Home" id="home"
-        onclick="window.location.href='/'">
+    <!-- Go home container -->
+    <div id="go-home-container" class="container">
+        <a href="/" id="go-home-link">Go Home</a>
 
-    <script type="module" src="posts.js"></script>
-    <script src="background.js"></script>
+        <script type="module" src="posts.js"></script>
+        <script src="background.js"></script>
 
-    <div id="ssl-indicator">
-        <span id="ssl-icon"></span>
-        <span id="ssl-text"></span>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sslIndicator = document.getElementById('ssl-indicator');
-            const sslIcon = document.getElementById('ssl-icon');
-            const sslText = document.getElementById('ssl-text');
+        <div id="ssl-indicator">
+            <span id="ssl-icon"></span>
+            <span id="ssl-text"></span>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const sslIndicator = document.getElementById('ssl-indicator');
+                const sslIcon = document.getElementById('ssl-icon');
+                const sslText = document.getElementById('ssl-text');
 
-            if (window.location.protocol === 'https:') {
-                sslText.textContent = 'Secure';
-                sslIndicator.classList.add('ssl-secure');
-                sslIcon.innerHTML = '<svg><use href="#lock-icon"></use></svg>';
-            } else {
-                sslText.textContent = 'Insecure';
-                sslIndicator.classList.add('ssl-insecure');
-                sslIcon.innerHTML = '<svg><use href="#unlock-icon"></use></svg>';
-            }
-        });
-    </script>
+                if (window.location.protocol === 'https:') {
+                    sslText.textContent = 'Secure';
+                    sslIndicator.classList.add('ssl-secure');
+                    sslIcon.innerHTML = '<svg><use href="#lock-icon"></use></svg>';
+                } else {
+                    sslText.textContent = 'Insecure';
+                    sslIndicator.classList.add('ssl-insecure');
+                    sslIcon.innerHTML = '<svg><use href="#unlock-icon"></use></svg>';
+                }
+            });
+        </script>
 
 </body>

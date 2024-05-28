@@ -661,7 +661,7 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s, filter 0.7s;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s, filter 2s ease-in-out;
 }
 
 .rating-container button:hover {
@@ -682,7 +682,7 @@ textarea {
     background-color: var(--primary-color);
     color: var(--container-background-color);
     box-shadow: 0 0px 8px #FF69B4AA;
-    filter: hue-rotate(360deg);
+    filter: hue-rotate(720deg);
 }
 
 .image-post {
