@@ -89,12 +89,13 @@ async function fetchPosts() {
     const postId = urlParams.get('id');
 
     try {
+        let posts;
         if (!postId) {
             const response = await fetch('/api/posts');
-            const posts = await response.json();
+            posts = await response.json();
         } else {
             const response = await fetch(`/api/posts/${postId}`);
-            const posts = await response.json();
+            posts = await response.json();
         }
         console.log(posts);
 
