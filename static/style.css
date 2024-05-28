@@ -709,14 +709,10 @@ textarea {
     padding: 30px;
 }
 
-.standalone {
-    margin-top: 30%;
-}
-
 #home {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
 }
 
