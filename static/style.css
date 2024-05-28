@@ -714,12 +714,12 @@ textarea {
     color: var(--primary-color);
     font-size: 2em;
     cursor: pointer;
-    transition: color 0.3s, transform 0.3s;
+    transition: color 0.3s, font-size 0.3s;
 }
 
 #go-home-link:hover {
     color: var(--highlighted-primary);
-    transform: scale(1.1);
+    font-size: 2.2em;
 }
 
 /* Dark Mode */
