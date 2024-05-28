@@ -60,7 +60,6 @@ function buildMicroblogPost(post) {
     return postContainer;
 }
 
-// TODO: Implement rating system
 function addRating(post) {
     const ratingContainer = document.createElement('div');
     ratingContainer.classList.add('rating-container');
@@ -69,7 +68,6 @@ function addRating(post) {
     ratingButton.classList.add('rating-button');
     ratingButton.textContent = "+" + post.rating;
 
-    // on click, increment rating api/posts/:id/rate, dont allow multiple ratings
     ratingButton.addEventListener('click', async (event) => {
         try {
             const response = await fetch(`/api/posts/${post.id}/rate`, {
@@ -77,7 +75,7 @@ function addRating(post) {
             });
             const data = await response.json();
             if (data.message.includes('successfully')) {
-                ratingButton.textContent = "+" + parseInt(ratingButton.textContent) + 1;
+                ratingButton.textContent = "+" + (parseInt(ratingButton.textContent.substring(1)) + 1);
             } else {
                 console.error('Error rating post:', data);
             }
@@ -85,7 +83,6 @@ function addRating(post) {
             console.error('Error rating post:', error);
         }
 
-        // Prevent multiple ratings
         ratingButton.disabled = true;
     });
 
