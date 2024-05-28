@@ -1,0 +1,13 @@
+[Unit]
+Description=micr0.dev Backend Server
+After=network.target
+
+[Service]
+User=micr0byte
+WorkingDirectory=/home/micr0byte/micr0.dev/backend
+ExecStart=/usr/bin/go run .
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
