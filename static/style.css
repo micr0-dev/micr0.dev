@@ -661,7 +661,7 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s, filter 0.7s;
 }
 
 .rating-container button:hover {
@@ -675,12 +675,14 @@ textarea {
     color: var(--container-background-color);
     transform: scale(0.9);
     box-shadow: 0 0px 8px #FF1493AA;
+
 }
 
 .rating-container button:disabled {
     background-color: var(--primary-color);
     color: var(--container-background-color);
     box-shadow: 0 0px 8px #FF69B4AA;
+    filter: hue-rotate(360deg);
 }
 
 .image-post {
@@ -716,6 +718,12 @@ textarea {
     cursor: pointer;
     width: 40px;
     height: 40px;
+
+    transition: transform 0.3s;
+}
+
+#home:hover {
+    transform: scale(1.02) rotate(-20deg);
 }
 
 /* Dark Mode */
