@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=micr0byte
 WorkingDirectory=/home/micr0byte/micr0.dev/backend
-ExecStart=/usr/bin/go run .
+ExecStart=/usr/local/go/bin/go run .
 Restart=on-failure
 RestartSec=5
 
