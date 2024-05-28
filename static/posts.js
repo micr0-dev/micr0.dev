@@ -76,7 +76,9 @@ function addRating(post) {
 function addId(post) {
     const idElement = document.createElement('div');
     idElement.classList.add('post-id');
-    idElement.textContent = "#" + post.id;
+    const idText = document.createElement('span');
+    idText.textContent = "#" + post.id;
+    idElement.appendChild(idText);
 
     return idElement;
 }
@@ -125,13 +127,14 @@ async function fetchPosts() {
                 postContainer = buildMicroblogPost(post);
             }
 
-            // const rating = addRating(post);
-            // postContainer.appendChild(rating);
-
-            const idElement = addId(post);
-            postContainer.appendChild(idElement);
-
             if (postContainer) {
+                // const rating = addRating(post);
+                // postContainer.appendChild(rating);
+
+                const idElement = addId(post);
+                postContainer.appendChild(idElement);
+
+
                 console.log(postContainer);
                 feedContainer.appendChild(postContainer);
             }

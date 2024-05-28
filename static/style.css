@@ -636,11 +636,10 @@ textarea {
     font-size: 1.6em;
 }
 
-.post post-id {
+.post-id {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    font-size: 12px;
     color: var(--backgorund-color-secondary);
 }
 
