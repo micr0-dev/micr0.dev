@@ -120,9 +120,10 @@ async function fetchPosts() {
             // const rating = addRating(post);
             // postContainer.appendChild(rating);
 
-            console.log(postContainer);
-
-            feedContainer.appendChild(postContainer);
+            if (postContainer) {
+                console.log(postContainer);
+                feedContainer.appendChild(postContainer);
+            }
         });
 
     } catch (error) {
