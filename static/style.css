@@ -636,6 +636,14 @@ textarea {
     font-size: 1.6em;
 }
 
+.post post-id {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--backgorund-color-secondary);
+}
+
 .image-post {
     text-align: left;
 }
@@ -660,14 +668,6 @@ textarea {
 .microblog-post {
     text-align: left;
     padding: 30px;
-}
-
-.post-id {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 12px;
-    color: var(--backgorund-color-secondary);
 }
 
 /* Dark Mode */
