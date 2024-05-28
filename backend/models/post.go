@@ -12,6 +12,7 @@ type Post struct {
 	Thumbnail   string `db:"thumbnail" json:"thumbnail"`
 	Content     string `db:"content" json:"content"`
 	Rating      int    `db:"rating" json:"rating"`
+	Datetime    int64  `db:"datetime" json:"datetime"`
 }
 
 func InitializeDatabase(db *sqlx.DB) {
@@ -23,7 +24,8 @@ func InitializeDatabase(db *sqlx.DB) {
 			description TEXT NOT NULL,
             content TEXT NOT NULL,
 			thumbnail TEXT NOT NULL,
-			rating INTEGER NOT NULL
+			rating INTEGER NOT NULL,
+			datetime INTEGER NOT NULL
         )
     `)
 	if err != nil {
@@ -44,7 +46,7 @@ func GetPostByID(db *sqlx.DB, id int) (Post, error) {
 }
 
 func CreatePost(db *sqlx.DB, post *Post) (int64, error) {
-	result, err := db.Exec("INSERT INTO posts (type, title, description, content, thumbnail, rating) VALUES (?, ?, ?, ?, ?, ?)", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating)
+	result, err := db.Exec("INSERT INTO posts (type, title, description, content, thumbnail, rating, datetime) VALUES (?, ?, ?, ?, ?, ?, ?)", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime)
 	if err != nil {
 		return 0, err
 	}
@@ -52,7 +54,7 @@ func CreatePost(db *sqlx.DB, post *Post) (int64, error) {
 }
 
 func UpdatePost(db *sqlx.DB, id int, post *Post) (int64, error) {
-	_, err := db.Exec("UPDATE posts SET type=?, title=?, description=?, content=?, thumbnail=?, rating=? WHERE id=?", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, id)
+	_, err := db.Exec("UPDATE posts SET type=?, title=?, description=?, content=?, thumbnail=?, rating=?, datetime=? WHERE id=?", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime, id)
 	return int64(id), err
 }
 

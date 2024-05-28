@@ -32,6 +32,7 @@ func main() {
 	router.PUT("/posts/:id", postsHandler.UpdatePost)
 	router.DELETE("/posts/:id", postsHandler.DeletePost)
 	router.POST("/posts/:id/rate", postsHandler.RatePost)
+	router.HEAD("/posts", postsHandler.GetPosts)
 
 	router.Static("/static", "./static")
 

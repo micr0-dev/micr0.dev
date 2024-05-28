@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"micr0.dev/backend/models"
 
@@ -61,6 +62,8 @@ func (h *PostHandler) CreatePost(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	newPost.Datetime = time.Now().Unix()
 
 	insertID, err := models.CreatePost(h.DB, &newPost)
 	if err != nil {
