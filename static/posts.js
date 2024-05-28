@@ -123,7 +123,8 @@ async function fetchPosts() {
             posts = await response.json();
         } else {
             const response = await fetch(`/api/posts/${postId}`);
-            posts = await response.json();
+            const post = await response.json();
+            posts = [post];
         }
         console.log(posts);
 
