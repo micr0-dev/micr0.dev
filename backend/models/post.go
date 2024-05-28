@@ -4,7 +4,6 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// Post represents a blog post in the database.
 type Post struct {
 	ID          int    `db:"id" json:"id"`
 	Type        string `db:"type" json:"type"`
@@ -15,7 +14,6 @@ type Post struct {
 	Rating      int    `db:"rating" json:"rating"`
 }
 
-// InitializeDatabase creates the 'posts' table if it doesn't exist.
 func InitializeDatabase(db *sqlx.DB) {
 	_, err := db.Exec(`
         CREATE TABLE IF NOT EXISTS posts (
@@ -29,25 +27,22 @@ func InitializeDatabase(db *sqlx.DB) {
         )
     `)
 	if err != nil {
-		panic(err) // Handle the error appropriately in a real application.
+		panic(err)
 	}
 }
 
-// GetPosts retrieves all posts from the database.
 func GetPosts(db *sqlx.DB) ([]Post, error) {
 	var posts []Post
 	err := db.Select(&posts, "SELECT * FROM posts")
 	return posts, err
 }
 
-// GetPostByID retrieves a single post by its ID from the database.
 func GetPostByID(db *sqlx.DB, id int) (Post, error) {
 	var post Post
 	err := db.Get(&post, "SELECT * FROM posts WHERE id=?", id)
 	return post, err
 }
 
-// CreatePost creates a new post in the database.
 func CreatePost(db *sqlx.DB, post *Post) (int64, error) {
 	result, err := db.Exec("INSERT INTO posts (type, title, description, content, thumbnail, rating) VALUES (?, ?, ?, ?, ?, ?)", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating)
 	if err != nil {
@@ -56,19 +51,16 @@ func CreatePost(db *sqlx.DB, post *Post) (int64, error) {
 	return result.LastInsertId()
 }
 
-// UpdatePost updates an existing post in the database.
 func UpdatePost(db *sqlx.DB, id int, post *Post) (int64, error) {
 	_, err := db.Exec("UPDATE posts SET type=?, title=?, description=?, content=?, thumbnail=?, rating=? WHERE id=?", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, id)
 	return int64(id), err
 }
 
-// DeletePost deletes a post by its ID from the database.
 func DeletePost(db *sqlx.DB, id int) error {
 	_, err := db.Exec("DELETE FROM posts WHERE id=?", id)
 	return err
 }
 
-// RatePost updates the rating of a post in the database.
 func RatePost(db *sqlx.DB, id, rating int) error {
 	_, err := db.Exec("UPDATE posts SET rating=? WHERE id=?", rating, id)
 	return err
