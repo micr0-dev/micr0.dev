@@ -88,16 +88,25 @@ async function fetchPosts() {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
-    if (postId) {
-        try {
+    try {
+        if (!postId) {
+            const response = await fetch('/api/posts');
+            const posts = await response.json();
+        } else {
             const response = await fetch(`/api/posts/${postId}`);
-            const post = await response.json();
+            const posts = await response.json();
+        }
+        console.log(posts);
 
-            if (!post) {
-                feedContainer.classList.add('invisible');
-                return;
-            }
+        if (!posts || posts.length === 0) {
+            feedContainer.classList.add('invisible');
+            return;
+        }
 
+        console.log('Type:', type);
+        console.log('Feed Container:', feedContainer);
+
+        posts.forEach(post => {
             let postContainer;
             if (post.type === 'image' && (type === 'all' || type === 'image')) {
                 postContainer = buildImagePost(post);
@@ -110,46 +119,14 @@ async function fetchPosts() {
             // const rating = addRating(post);
             // postContainer.appendChild(rating);
 
+            console.log(postContainer);
+
             feedContainer.appendChild(postContainer);
+        });
 
-        } catch (error) {
-            feedContainer.classList.add('invisible');
-            console.error('Error fetching post:', error);
-        }
-    } else {
-        try {
-            const response = await fetch('/api/posts');
-            const posts = await response.json();
-
-            console.log(posts);
-
-            if (!posts || posts.length === 0) {
-                feedContainer.classList.add('invisible');
-                return;
-            }
-
-            posts.forEach(post => {
-                let postContainer;
-                if (post.type === 'image' && (type === 'all' || type === 'image')) {
-                    postContainer = buildImagePost(post);
-                } else if (post.type === 'article' && (type === 'all' || type === 'article')) {
-                    postContainer = buildArticlePost(post);
-                } else if (post.type === 'microblog' && (type === 'all' || type === 'microblog')) {
-                    postContainer = buildMicroblogPost(post);
-                }
-
-                // const rating = addRating(post);
-                // postContainer.appendChild(rating);
-
-                console.log(postContainer);
-
-                feedContainer.appendChild(postContainer);
-            });
-
-        } catch (error) {
-            feedContainer.classList.add('invisible');
-            console.error('Error fetching posts:', error);
-        }
+    } catch (error) {
+        feedContainer.classList.add('invisible');
+        console.error('Error fetching posts:', error);
     }
 }
 
