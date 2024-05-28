@@ -74,14 +74,13 @@ function addRating(post) {
         try {
             const response = await fetch(`/api/posts/${post.id}/rate`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: post.id })
             });
-
-            console.log(data);
-            ratingButton.textContent = data.rating;
+            const data = await response.json();
+            if (data.message.includes('successfully')) {
+                ratingButton.textContent = parseInt(ratingButton.textContent) + 1;
+            } else {
+                console.error('Error rating post:', data);
+            }
         } catch (error) {
             console.error('Error rating post:', error);
         }
