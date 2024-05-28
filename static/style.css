@@ -661,7 +661,7 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s, filter 1.2s ease-in-out;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
 .rating-container button:hover {
@@ -682,7 +682,6 @@ textarea {
     background-color: var(--primary-color);
     color: var(--container-background-color);
     box-shadow: 0 0px 8px #FF69B4AA;
-    filter: hue-rotate(720deg);
 }
 
 .image-post {
@@ -711,19 +710,16 @@ textarea {
     padding: 30px;
 }
 
-#home {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+#go-home-link {
+    color: var(--primary-color);
+    font-size: 2em;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-
-    transition: transform 0.3s;
+    transition: color 0.3s, transform 0.3s;
 }
 
-#home:hover {
-    transform: scale(1.02) rotate(-20deg);
+#go-home-link:hover {
+    color: var(--highlighted-primary);
+    transform: scale(1.1);
 }
 
 /* Dark Mode */
