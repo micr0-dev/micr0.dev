@@ -652,19 +652,28 @@ textarea {
 .rating-container button {
     width: 20px;
     height: 20px;
-    fill: var(--backgorund-color-secondary);
+    border-radius: 20px;
+    background-color: var(--backgorund-color-secondary);
+    color: var(--text-color);
 }
 
 .rating-container button:hover {
-    fill: var(--highlighted-primary);
+    background-color: var(--primary-color);
+    color: var(--container-background-color);
+    box-shadow: 0 4px 8px #FF69B4;
 }
 
 .rating-container button:active {
+    background-color: var(--highlighted-primary);
+    color: var(--container-background-color);
     transform: scale(0.9);
+    box-shadow: 0 4px 8px #FF1493;
 }
 
 .rating-container button:disabled {
-    fill: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--container-background-color);
+    box-shadow: 0 4px 8px #FF69B4;
 }
 
 .image-post {
@@ -738,6 +747,18 @@ textarea {
 
     .post hr {
         border: 1px solid #E86A92;
+    }
+
+    .rating-container button:hover {
+        box-shadow: 0 4px 8px #E86A92;
+    }
+
+    .rating-container button:active {
+        box-shadow: 0 4px 8px #f64c82;
+    }
+
+    .rating-container button:disabled {
+        box-shadow: 0 4px 8px #E86A92;
     }
 }
 
