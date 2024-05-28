@@ -72,7 +72,7 @@ function addRating(post) {
     // on click, increment rating api/posts/:id/rate, dont allow multiple ratings
     ratingButton.addEventListener('click', async (event) => {
         try {
-            const response = await fetch(`/api/posts/rate`, {
+            const response = await fetch(`/api/posts/${post.id}/rate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
