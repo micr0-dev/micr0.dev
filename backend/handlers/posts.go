@@ -3,6 +3,7 @@ package handlers
 import (
 	"database/sql"
 	"net/http"
+	"os"
 	"strconv"
 
 	"micr0.dev/backend/models"
@@ -50,6 +51,11 @@ func (h *PostHandler) GetPostByID(c *gin.Context) {
 }
 
 func (h *PostHandler) CreatePost(c *gin.Context) {
+	if c.GetHeader("password") != os.Getenv("ADMIN_PASSWORD") {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
+
 	var newPost models.Post
 	if err := c.ShouldBindJSON(&newPost); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -66,6 +72,11 @@ func (h *PostHandler) CreatePost(c *gin.Context) {
 }
 
 func (h *PostHandler) UpdatePost(c *gin.Context) {
+	if c.GetHeader("password") != os.Getenv("ADMIN_PASSWORD") {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
+
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
@@ -89,6 +100,11 @@ func (h *PostHandler) UpdatePost(c *gin.Context) {
 }
 
 func (h *PostHandler) DeletePost(c *gin.Context) {
+	if c.GetHeader("password") != os.Getenv("ADMIN_PASSWORD") {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
+
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
