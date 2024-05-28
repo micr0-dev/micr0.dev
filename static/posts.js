@@ -21,20 +21,8 @@ function buildArticlePost(post) {
     const postContainer = document.createElement('div');
     postContainer.classList.add('post', 'article-post');
 
-
-    const imageElement = document.createElement('img');
-    imageElement.src = post.thumbnail;
-    imageElement.alt = post.title;
-
-
     const titleElement = document.createElement('h1');
     titleElement.textContent = post.title;
-
-    if (post.description) {
-        const descriptionElement = document.createElement('h2');
-        descriptionElement.textContent = post.description;
-    }
-    // TODO: Add reading time
 
     const lineBreak = document.createElement('hr');
     postContainer.appendChild(lineBreak);
@@ -44,11 +32,16 @@ function buildArticlePost(post) {
 
     postContainer.appendChild(titleElement);
     if (post.thumbnail) {
+        const imageElement = document.createElement('img');
+        imageElement.src = post.thumbnail;
+        imageElement.alt = post.title;
         postContainer.appendChild(imageElement);
     }
     if (post.description) {
+        const descriptionElement = document.createElement('h2');
+        descriptionElement.textContent = post.description;
         postContainer.appendChild(descriptionElement);
-    }
+    } // TODO: Add reading time
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
 
