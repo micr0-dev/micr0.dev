@@ -67,7 +67,7 @@ function addRating(post) {
 
     const ratingButton = document.createElement('button');
     ratingButton.classList.add('rating-button');
-    ratingButton.textContent = post.rating;
+    ratingButton.textContent = "+" + post.rating;
 
     // on click, increment rating api/posts/:id/rate, dont allow multiple ratings
     ratingButton.addEventListener('click', async (event) => {
@@ -77,7 +77,7 @@ function addRating(post) {
             });
             const data = await response.json();
             if (data.message.includes('successfully')) {
-                ratingButton.textContent = parseInt(ratingButton.textContent) + 1;
+                ratingButton.textContent = "+" + parseInt(ratingButton.textContent) + 1;
             } else {
                 console.error('Error rating post:', data);
             }
