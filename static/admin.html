@@ -41,15 +41,11 @@
         </form>
     </div>
 
-    <div id="blog-container">
+    <div id="feed-container" class="microblog-feed">
     </div>
     <script type="module" src="posts.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            fetchPosts();
-        });
-
         const form = document.getElementById('new-post-form');
         const postTypeSelector = document.getElementById('post-type');
         const commonFields = document.getElementById('common-fields');

@@ -73,20 +73,31 @@ function addRating(post) {
     return ratingContainer;
 }
 
-async function fetchPosts(type = 'all') {
-    const blogContainer = document.getElementById('blog-container');
-    try {
-        const response = await fetch('/api/posts');
-        const posts = await response.json();
+async function fetchPosts() {
+    let type = 'all';
+    const feedContainer = document.getElementById('feed-container');
 
-        console.log(posts);
+    if (feedContainer.classList.contains('image-feed')) {
+        type = 'image';
+    } else if (feedContainer.classList.contains('article-feed')) {
+        type = 'article';
+    } else if (feedContainer.classList.contains('microblog-feed')) {
+        type = 'microblog';
+    }
 
-        if (!posts || posts.length === 0) {
-            blogContainer.classList.add('invisible');
-            return;
-        }
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
 
-        posts.forEach(post => {
+    if (postId) {
+        try {
+            const response = await fetch(`/api/posts/${postId}`);
+            const post = await response.json();
+
+            if (!post) {
+                feedContainer.classList.add('invisible');
+                return;
+            }
+
             let postContainer;
             if (post.type === 'image' && (type === 'all' || type === 'image')) {
                 postContainer = buildImagePost(post);
@@ -99,13 +110,49 @@ async function fetchPosts(type = 'all') {
             // const rating = addRating(post);
             // postContainer.appendChild(rating);
 
-            console.log(postContainer);
+            feedContainer.appendChild(postContainer);
 
-            blogContainer.appendChild(postContainer);
-        });
+        } catch (error) {
+            feedContainer.classList.add('invisible');
+            console.error('Error fetching post:', error);
+        }
+    } else {
+        try {
+            const response = await fetch('/api/posts');
+            const posts = await response.json();
 
-    } catch (error) {
-        blogContainer.classList.add('invisible');
-        console.error('Error fetching posts:', error);
+            console.log(posts);
+
+            if (!posts || posts.length === 0) {
+                feedContainer.classList.add('invisible');
+                return;
+            }
+
+            posts.forEach(post => {
+                let postContainer;
+                if (post.type === 'image' && (type === 'all' || type === 'image')) {
+                    postContainer = buildImagePost(post);
+                } else if (post.type === 'article' && (type === 'all' || type === 'article')) {
+                    postContainer = buildArticlePost(post);
+                } else if (post.type === 'microblog' && (type === 'all' || type === 'microblog')) {
+                    postContainer = buildMicroblogPost(post);
+                }
+
+                // const rating = addRating(post);
+                // postContainer.appendChild(rating);
+
+                console.log(postContainer);
+
+                feedContainer.appendChild(postContainer);
+            });
+
+        } catch (error) {
+            feedContainer.classList.add('invisible');
+            console.error('Error fetching posts:', error);
+        }
     }
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    fetchPosts();
+});
