@@ -21,21 +21,23 @@
 <body>
     <canvas id="magneticCanvas"></canvas>
 
-    <div id="ssl-indicator">
-        <span id="ssl-icon"></span>
-        <span id="ssl-text"></span>
-    </div>
 
-    <div id="home">
-        <img src="https://avatars.githubusercontent.com/u/26364458?v=4" alt="Home" id="avatar" class="avatar"
-            width="30%" onclick="window.location.href='/'">
-    </div>
 
     <div id="feed-container" class="standalone">
     </div>
 
+    <div id="home">
+        <img src="https://avatars.githubusercontent.com/u/26364458?v=4" alt="Home" id="avatar" class="avatar"
+            onclick="window.location.href='/'">
+    </div>
+
     <script type="module" src="posts.js"></script>
     <script src="background.js"></script>
+
+    <div id="ssl-indicator">
+        <span id="ssl-icon"></span>
+        <span id="ssl-text"></span>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const sslIndicator = document.getElementById('ssl-indicator');
