@@ -37,6 +37,9 @@
                 <textarea id="content" name="content" class="textbox" rows="10" cols="60"></textarea><br><br>
             </div>
 
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" class="textbox" required><br><br>
+
             <button type="submit">post me!~</button>
         </form>
     </div>
@@ -53,6 +56,7 @@
         const commonFields = document.getElementById('common-fields');
         const descriptionField = document.getElementById('description-field');
         const contentField = document.getElementById('content-field');
+        const passwordField = document.getElementById('password');
 
         function updateFormFields() {
             const selectedType = postTypeSelector.value;
@@ -85,7 +89,8 @@
                 const response = await fetch('/api/posts', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'password': passwordField.value
                     },
                     body: JSON.stringify(postData)
                 });
