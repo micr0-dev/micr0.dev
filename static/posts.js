@@ -42,9 +42,9 @@ function buildArticlePost(post) {
         descriptionElement.textContent = post.description;
 
         const readingTime = estimateReadingTime(post.content);
-        const readingTimeElement = document.createElement('span');
+        const readingTimeElement = document.createElement('p');
         readingTimeElement.classList.add('reading-time');
-        readingTimeElement.textContent = `Estimated Reading Time: ${readingTime} min`;
+        readingTimeElement.textContent = `estimated reading time: ${readingTime} min`;
         descriptionElement.appendChild(readingTimeElement);
 
         postContainer.appendChild(descriptionElement);
