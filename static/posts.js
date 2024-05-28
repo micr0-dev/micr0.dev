@@ -181,3 +181,43 @@ async function fetchPosts() {
 document.addEventListener('DOMContentLoaded', (event) => {
     fetchPosts();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('new-post-form');
+    if (form) {
+        function previewPost(post) {
+            let postContainer;
+            if (post.type === 'image') {
+                postContainer = buildImagePost(post);
+            } else if (post.type === 'article') {
+                postContainer = buildArticlePost(post);
+            } else if (post.type === 'microblog') {
+                postContainer = buildMicroblogPost(post);
+            }
+
+            if (postContainer) {
+                const previewContainer = document.getElementById('preview-container');
+                previewContainer.innerHTML = '';
+                previewContainer.appendChild(postContainer);
+            }
+        }
+
+        const form = document.getElementById('new-post-form');
+        const postTypeSelector = document.getElementById('post-type');
+        const titleInput = document.getElementById('title');
+        const thumbnailInput = document.getElementById('thumbnail');
+        const descriptionInput = document.getElementById('description');
+        const contentInput = document.getElementById('content');
+
+        form.addEventListener('input', (event) => {
+            const postData = {
+                type: postTypeSelector.value,
+                title: titleInput.value,
+                thumbnail: thumbnailInput.value,
+                description: descriptionInput.value,
+                content: contentInput.value
+            };
+            previewPost(postData);
+        });
+    }
+});
