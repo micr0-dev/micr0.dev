@@ -40,17 +40,16 @@ function buildArticlePost(post) {
     if (post.description) {
         const descriptionElement = document.createElement('h2');
         descriptionElement.textContent = post.description;
-
-        const readingTime = estimateReadingTime(post.content);
-        const readingTimeElement = document.createElement('span');
-        readingTimeElement.classList.add('reading-time');
-        readingTimeElement.textContent = `estimated reading time: ${readingTime} min`;
-        descriptionElement.appendChild(readingTimeElement);
-
         postContainer.appendChild(descriptionElement);
     }
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
+
+    const readingTime = estimateReadingTime(post.content);
+    const readingTimeElement = document.createElement('span');
+    readingTimeElement.classList.add('reading-time');
+    readingTimeElement.textContent = `estimated reading time: ${readingTime} min`;
+    postContainer.appendChild(readingTimeElement);
 
     return postContainer;
 }
@@ -139,15 +138,11 @@ async function fetchPosts() {
             const post = await response.json();
             posts = [post];
         }
-        console.log(posts);
 
         if (!posts || posts.length === 0) {
             feedContainer.classList.add('invisible');
             return;
         }
-
-        console.log('Type:', type);
-        console.log('Feed Container:', feedContainer);
 
         posts.forEach(post => {
             let postContainer;
@@ -166,8 +161,6 @@ async function fetchPosts() {
                 const idElement = addId(post);
                 postContainer.appendChild(idElement);
 
-
-                console.log(postContainer);
                 feedContainer.appendChild(postContainer);
             }
         });
