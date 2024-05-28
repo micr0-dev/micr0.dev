@@ -232,7 +232,7 @@ button {
 }
 
 .particle {
-    position: absolute;
+    position: fixed;
     color: var(--text-color);
     animation: floatUp 1s forwards;
     pointer-events: none;
@@ -462,6 +462,10 @@ textarea {
     color: var(--text-color);
 }
 
+#post-type {
+    color: var(--text-color);
+}
+
 #new-post-form button {
     color: var(--container-background-color);
     background-color: var(--primary-color);
@@ -501,6 +505,8 @@ textarea {
     margin: 20px auto;
     padding-top: 0%;
 }
+
+/* TODO: Make responsive design for posts! */
 
 /* All the formatting for markdown */
 
@@ -708,6 +714,10 @@ textarea {
 .microblog-post {
     text-align: left;
     padding: 30px;
+}
+
+.standalone {
+    animation: bounce 1s 1;
 }
 
 #go-home-container {

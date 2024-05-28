@@ -40,8 +40,15 @@ function buildArticlePost(post) {
     if (post.description) {
         const descriptionElement = document.createElement('h2');
         descriptionElement.textContent = post.description;
+
+        const readingTime = estimateReadingTime(post.content);
+        const readingTimeElement = document.createElement('span');
+        readingTimeElement.classList.add('reading-time');
+        readingTimeElement.textContent = `Estimated Reading Time: ${readingTime} min`;
+        descriptionElement.appendChild(readingTimeElement);
+
         postContainer.appendChild(descriptionElement);
-    } // TODO: Add reading time
+    }
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
 
@@ -58,6 +65,12 @@ function buildMicroblogPost(post) {
     postContainer.appendChild(contentElement);
 
     return postContainer;
+}
+
+function estimateReadingTime(content) {
+    const wordsPerMinute = 200;
+    const textLength = content.split(' ').length;
+    return Math.ceil(textLength / wordsPerMinute);
 }
 
 function addRating(post) {
