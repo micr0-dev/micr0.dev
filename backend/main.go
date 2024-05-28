@@ -32,6 +32,7 @@ func main() {
 	router.POST("/posts", postsHandler.CreatePost)
 	router.PUT("/posts/:id", postsHandler.UpdatePost)
 	router.DELETE("/posts/:id", postsHandler.DeletePost)
+	router.POST("/posts/:id/rate", postsHandler.RatePost)
 
 	// Serve static files (from the 'static' directory)
 	router.Static("/static", "./static")

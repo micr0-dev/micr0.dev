@@ -21,15 +21,19 @@ function buildArticlePost(post) {
     const postContainer = document.createElement('div');
     postContainer.classList.add('post', 'article-post');
 
+
     const imageElement = document.createElement('img');
     imageElement.src = post.thumbnail;
     imageElement.alt = post.title;
 
+
     const titleElement = document.createElement('h1');
     titleElement.textContent = post.title;
 
-    const descriptionElement = document.createElement('h2');
-    descriptionElement.textContent = post.description;
+    if (post.description) {
+        const descriptionElement = document.createElement('h2');
+        descriptionElement.textContent = post.description;
+    }
     // TODO: Add reading time
 
     const lineBreak = document.createElement('hr');
@@ -39,8 +43,12 @@ function buildArticlePost(post) {
     contentElement.innerHTML = marked(post.content);
 
     postContainer.appendChild(titleElement);
-    postContainer.appendChild(imageElement);
-    postContainer.appendChild(descriptionElement);
+    if (post.thumbnail) {
+        postContainer.appendChild(imageElement);
+    }
+    if (post.description) {
+        postContainer.appendChild(descriptionElement);
+    }
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
 
@@ -67,6 +75,23 @@ function addRating(post) {
     const ratingButton = document.createElement('button');
     ratingButton.classList.add('rating-button');
     ratingButton.textContent = post.rating;
+
+    // on click, increment rating api/posts/:id/rate, dont allow multiple ratings
+    ratingButton.addEventListener('click', async (event) => {
+        try {
+            const response = await fetch(`/api/posts/${post.id}/rate`, {
+                method: 'POST',
+            });
+            const data = await response.json();
+            console.log(data);
+            ratingButton.textContent = data.rating;
+        } catch (error) {
+            console.error('Error rating post:', error);
+        }
+
+        // Prevent multiple ratings
+        ratingButton.disabled = true;
+    });
 
     ratingContainer.appendChild(ratingButton);
 
@@ -128,8 +153,8 @@ async function fetchPosts() {
             }
 
             if (postContainer) {
-                // const rating = addRating(post);
-                // postContainer.appendChild(rating);
+                const rating = addRating(post);
+                postContainer.appendChild(rating);
 
                 const idElement = addId(post);
                 postContainer.appendChild(idElement);

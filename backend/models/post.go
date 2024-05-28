@@ -67,3 +67,9 @@ func DeletePost(db *sqlx.DB, id int) error {
 	_, err := db.Exec("DELETE FROM posts WHERE id=?", id)
 	return err
 }
+
+// RatePost updates the rating of a post in the database.
+func RatePost(db *sqlx.DB, id, rating int) error {
+	_, err := db.Exec("UPDATE posts SET rating=? WHERE id=?", rating, id)
+	return err
+}

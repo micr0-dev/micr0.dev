@@ -112,3 +112,33 @@ func (h *PostHandler) DeletePost(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Post deleted successfully"})
 }
+
+// increment the rating by one for the post with the given ID
+func (h *PostHandler) RatePost(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
+		return
+	}
+
+	// Get the current rating of the post
+	post, err := models.GetPostByID(h.DB, id)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Post not found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get post"})
+		return
+	}
+
+	// Increment the rating by one
+	err = models.RatePost(h.DB, id, post.Rating+1)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to rate post"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Post rated successfully"})
+}

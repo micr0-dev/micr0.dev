@@ -494,7 +494,7 @@ textarea {
     border: 2px solid #FFD1DC;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    padding: 40px;
     text-align: center;
     width: 80%;
     max-width: 600px;
@@ -643,6 +643,30 @@ textarea {
     color: var(--backgorund-color-secondary);
 }
 
+.rating-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.rating-container button {
+    width: 20px;
+    height: 20px;
+    fill: var(--backgorund-color-secondary);
+}
+
+.rating-container button:hover {
+    fill: var(--highlighted-primary);
+}
+
+.rating-container button:active {
+    transform: scale(0.9);
+}
+
+.rating-container button:disabled {
+    fill: var(--primary-color);
+}
+
 .image-post {
     text-align: left;
 }
@@ -655,7 +679,7 @@ textarea {
 
 .article-post {
     text-align: left;
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .article-post img {
