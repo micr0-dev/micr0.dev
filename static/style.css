@@ -711,6 +711,14 @@ textarea {
     margin: 10px 0;
 }
 
+#reading-time {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--text-color);
+    font-size: 12px;
+}
+
 .microblog-post {
     text-align: left;
     padding: 30px;
