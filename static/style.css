@@ -710,6 +710,11 @@ textarea {
     padding: 30px;
 }
 
+#go-home-container {
+    border-radius: 999999px;
+    padding: 20px;
+}
+
 #go-home-link {
     color: var(--primary-color);
     font-size: 2em;
