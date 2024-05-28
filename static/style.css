@@ -709,6 +709,17 @@ textarea {
     padding: 30px;
 }
 
+.standalone {
+    margin-top: 30%;
+}
+
+#home {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
 /* Dark Mode */
 
 @media screen and (prefers-color-scheme: dark) {
