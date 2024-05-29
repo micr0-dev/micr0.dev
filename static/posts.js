@@ -29,8 +29,7 @@ function createEditIconSVG() {
 function createLockIconSVG() {
     const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgElement.setAttribute('viewBox', '0 0 330 330');
-    svgElement.innerHTML = `<path xmlns="http://www.w3.org/2000/svg" id="XMLID_505_"
-    d="M65,330h200c8.284,0,15-6.716,15-15V145c0-8.284-6.716-15-15-15h-15V85c0-46.869-38.131-85-85-85   S80,38.131,80,85v45H65c-8.284,0-15,6.716-15,15v170C50,323.284,56.716,330,65,330z M207.481,219.356l-42.5,42.5   c-2.929,2.929-6.768,4.394-10.606,4.394s-7.678-1.465-10.606-4.394l-21.25-21.25c-5.858-5.858-5.858-15.354,0-21.213   c5.857-5.858,15.355-5.858,21.213,0l10.644,10.643l31.894-31.893c5.857-5.858,15.355-5.858,21.213,0   C213.34,204.002,213.34,213.498,207.481,219.356z M110,85c0-30.327,24.673-55,55-55s55,24.673,55,55v45H110V85z" />`;
+    svgElement.innerHTML = `<path xmlns="http://www.w3.org/2000/svg" d="M36.3636 800H521.212C541.295 800 557.576 783.719 557.576 763.636V351.515C557.576 331.433 541.295 315.152 521.212 315.152H484.848V206.061C484.848 92.4388 392.41 0 278.788 0C165.166 0 72.7273 92.4388 72.7273 206.061V315.152H36.3636C16.2812 315.152 0 331.433 0 351.515V763.636C0 783.719 16.2812 800 36.3636 800ZM145.455 206.061C145.455 132.541 205.268 72.7273 278.788 72.7273C352.308 72.7273 412.121 132.541 412.121 206.061V315.152H145.455V206.061Z"`;
     return svgElement;
 }
 
@@ -187,15 +186,15 @@ function addRating(post) {
 function addId(post) {
     const idElement = document.createElement('div');
     idElement.classList.add('post-id');
-    const idText = document.createElement('span');
-    idText.textContent = "#" + post.id;
-    idElement.appendChild(idText);
 
     if (post.unlisted) {
         const lockIcon = createLockIconSVG();
         idElement.appendChild(lockIcon);
     }
 
+    const idText = document.createElement('span');
+    idText.textContent = "#" + post.id;
+    idElement.appendChild(idText);
     return idElement;
 }
 
