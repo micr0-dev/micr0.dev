@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 	"time"
 
 	"micr0.dev/backend/models"
@@ -23,6 +22,14 @@ type PostHandler struct {
 
 func NewPostHandler(db *sqlx.DB) *PostHandler {
 	return &PostHandler{DB: db}
+}
+
+func isValidID(id string) bool {
+	if len(id) != 4 {
+		return false
+	}
+	_, err := hex.DecodeString(id)
+	return err == nil
 }
 
 func (h *PostHandler) GetPosts(c *gin.Context) {
@@ -46,9 +53,8 @@ func (h *PostHandler) GetPosts(c *gin.Context) {
 }
 
 func (h *PostHandler) GetPostByID(c *gin.Context) {
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
+	id := c.Param("id")
+	if isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}
@@ -134,9 +140,8 @@ func (h *PostHandler) UpdatePost(c *gin.Context) {
 		return
 	}
 
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
+	id := c.Param("id")
+	if isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}
@@ -147,7 +152,7 @@ func (h *PostHandler) UpdatePost(c *gin.Context) {
 		return
 	}
 
-	_, err = models.UpdatePost(h.DB, id, &updatedPost)
+	_, err := models.UpdatePost(h.DB, id, &updatedPost)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update post"})
 		return
@@ -162,14 +167,13 @@ func (h *PostHandler) DeletePost(c *gin.Context) {
 		return
 	}
 
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
+	id := c.Param("id")
+	if isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}
 
-	err = models.DeletePost(h.DB, id)
+	err := models.DeletePost(h.DB, id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete post"})
 		return
@@ -179,9 +183,8 @@ func (h *PostHandler) DeletePost(c *gin.Context) {
 }
 
 func (h *PostHandler) RatePost(c *gin.Context) {
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
+	id := c.Param("id")
+	if isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}

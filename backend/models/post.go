@@ -47,7 +47,7 @@ func GetPosts(db *sqlx.DB) ([]Post, error) {
 	return posts, err
 }
 
-func GetPostByID(db *sqlx.DB, id int) (Post, error) {
+func GetPostByID(db *sqlx.DB, id string) (Post, error) {
 	var post Post
 	err := db.Get(&post, "SELECT * FROM posts WHERE id=?", id)
 	return post, err
@@ -58,17 +58,17 @@ func CreatePostWithID(db *sqlx.DB, post *Post) error {
 	return err
 }
 
-func UpdatePost(db *sqlx.DB, id int, post *Post) (int64, error) {
+func UpdatePost(db *sqlx.DB, id string, post *Post) (string, error) {
 	_, err := db.Exec("UPDATE posts SET type=?, title=?, description=?, content=?, thumbnail=?, rating=?, datetime=?, unlisted=? WHERE id=?", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime, post.Unlisted, id)
-	return int64(id), err
+	return id, err
 }
 
-func DeletePost(db *sqlx.DB, id int) error {
+func DeletePost(db *sqlx.DB, id string) error {
 	_, err := db.Exec("DELETE FROM posts WHERE id=?", id)
 	return err
 }
 
-func RatePost(db *sqlx.DB, id, rating int) error {
+func RatePost(db *sqlx.DB, id string, rating int) error {
 	_, err := db.Exec("UPDATE posts SET rating=? WHERE id=?", rating, id)
 	return err
 }
