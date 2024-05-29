@@ -156,7 +156,7 @@ function addDateTimestamp(post) {
     const dateElement = document.createElement('div');
     dateElement.classList.add('post-date');
     const dateText = document.createElement('span');
-    dateText.textContent = post.date;
+    dateText.textContent = new Date(post.datetime).toLocaleString();
     dateElement.appendChild(dateText);
 
     return dateElement;
