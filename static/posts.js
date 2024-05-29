@@ -190,6 +190,7 @@ function addDateTimestamp(post) {
     dateElement.classList.add('post-date');
     const dateText = document.createElement('span');
     dateText.textContent = timeSince(unixToDate(post.datetime));
+    dateElement.title = unixToDate(post.datetime).toLocaleString();
     dateElement.appendChild(dateText);
 
     return dateElement;
