@@ -760,26 +760,23 @@ textarea {
 
 /* FIXME: make it look better and less invasive */
 .interaction-container button {
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 0px;
     padding: 6px;
-    background-color: var(--backgorund-color-secondary);
-    fill: var(--text-color);
+    background-color: #00000000;
+    fill: var(--backgorund-color-secondary);
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, fill 0.3s;
 }
 
 .interaction-container button:hover {
-    background-color: var(--primary-color);
-    fill: var(--container-background-color);
-    box-shadow: 0 0px 8px #FF69B4AA;
+    fill: var(--text-color);
+    transform: scale(1.1);
 }
 
 .interaction-container button:active {
-    background-color: var(--highlighted-primary);
-    fill: var(--container-background-color);
+    fill: var(--text-color);
     transform: scale(0.9);
-    box-shadow: 0 0px 8px #FF1493AA;
 
 }
 
