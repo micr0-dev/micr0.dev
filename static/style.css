@@ -649,6 +649,13 @@ textarea {
     color: var(--backgorund-color-secondary);
 }
 
+.post-date {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--backgorund-color-secondary);
+}
+
 .rating-container {
     position: absolute;
     bottom: 10px;

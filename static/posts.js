@@ -58,6 +58,8 @@ function buildArticlePost(post) {
     readingTimeElement.textContent = `estimated reading time: ${readingTime} min`;
     interactionContainer.appendChild(readingTimeElement);
 
+    postContainer.appendChild(interactionContainer);
+
     return postContainer;
 }
 
@@ -122,6 +124,17 @@ function addId(post) {
     idElement.appendChild(idText);
 
     return idElement;
+}
+
+function addDateTimestamp(post) {
+    const dateElement = document.createElement('div');
+    dateElement.classList.add('date-timestamp');
+    const dateText = document.createElement('span');
+
+    dateText.textContent = new Date(post.date).toLocaleString();
+    dateElement.appendChild(dateText);
+
+    return dateElement;
 }
 
 //TODO: share button
@@ -191,6 +204,9 @@ async function fetchPosts() {
 
                 const idElement = addId(post);
                 postContainer.appendChild(idElement);
+
+                const dateElement = addDateTimestamp(post);
+                postContainer.appendChild(dateElement);
 
                 const share = addShare(post);
                 postContainer.querySelector('.interaction-container').appendChild(share);
