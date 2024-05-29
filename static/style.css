@@ -737,27 +737,32 @@ textarea {
     align-items: center;
 }
 
+.share-icon {
+    width: 40px;
+    height: 40px;
+}
+
 .interaction-container button {
     width: 40px;
     height: 40px;
     border-radius: 40px;
     background-color: var(--backgorund-color-secondary);
-    color: var(--text-color);
+    fill: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, fill 0.3s;
 }
 
 .interaction-container button:hover {
     background-color: var(--primary-color);
-    color: var(--container-background-color);
+    fill: var(--container-background-color);
     box-shadow: 0 0px 8px #FF69B4AA;
 }
 
 .interaction-container button:active {
     background-color: var(--highlighted-primary);
-    color: var(--container-background-color);
+    fill: var(--container-background-color);
     transform: scale(0.9);
     box-shadow: 0 0px 8px #FF1493AA;
 

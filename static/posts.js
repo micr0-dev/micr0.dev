@@ -136,14 +136,17 @@ function addDateTimestamp(post) {
     return dateElement;
 }
 
-//TODO: share button
 function addShare(post) {
     const shareContainer = document.createElement('div');
     shareContainer.classList.add('share-container');
 
     const shareButton = document.createElement('button');
     shareButton.classList.add('share-button');
-    shareButton.textContent = "Share";
+
+    const shareIcon = document.createElement('svg');
+    shareIcon.classList.add('share-icon');
+    shareIcon.innerHTML = '<use href="#share-icon"></use>';
+    shareButton.appendChild(shareIcon);
 
     shareButton.addEventListener('click', (event) => {
         window.location.href = `/article.html?id=${post.id}`;
@@ -152,6 +155,68 @@ function addShare(post) {
     shareContainer.appendChild(shareButton);
 
     return shareContainer;
+}
+
+function addDelete(post) {
+    const deleteContainer = document.createElement('div');
+    deleteContainer.classList.add('delete-container');
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+
+    const deleteIcon = document.createElement('svg');
+    deleteIcon.classList.add('delete-icon');
+    deleteIcon.innerHTML = '<use href="#delete-icon"></use>';
+    deleteButton.appendChild(deleteIcon);
+
+    deleteButton.addEventListener('click', async (event) => {
+        // Ask for password before deleting post
+        const password = prompt('Please enter your password to delete this post:');
+
+        try {
+            const response = await fetch(`/api/posts/${post.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'password': password
+                },
+            });
+            const data = await response.json();
+            if (data.message.includes('successfully')) {
+                window.location.reload();
+            } else {
+                console.error('Error deleting post:', data);
+            }
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
+
+        deleteButton.disabled = true;
+    });
+
+    deleteContainer.appendChild(deleteButton);
+
+    return deleteContainer;
+}
+
+function addEdit(post) {
+    const editContainer = document.createElement('div');
+    editContainer.classList.add('edit-container');
+
+    const editButton = document.createElement('button');
+    editButton.classList.add('edit-button');
+
+    const editIcon = document.createElement('svg');
+    editIcon.classList.add('edit-icon');
+    editIcon.innerHTML = '<use href="#edit-icon"></use>';
+    editButton.appendChild(editIcon);
+
+    editButton.addEventListener('click', (event) => {
+        window.location.href = `/edit.html?id=${post.id}`;
+    }); // TODO: add edit page
+
+    editContainer.appendChild(editButton);
+
+    return editContainer;
 }
 
 //TODO: zoom in on image when hovered
@@ -209,6 +274,15 @@ async function fetchPosts() {
 
                 const share = addShare(post);
                 postContainer.querySelector('.interaction-container').appendChild(share);
+
+                // if page is admin.html, add delete and edit buttons
+                if (window.location.pathname.includes('admin.html')) {
+                    const deleteButton = addDelete(post);
+                    postContainer.querySelector('.interaction-container').appendChild(deleteButton);
+
+                    const editButton = addEdit(post);
+                    postContainer.querySelector('.interaction-container').appendChild(editButton);
+                }
 
                 feedContainer.appendChild(postContainer);
             }
