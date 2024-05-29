@@ -651,6 +651,12 @@ textarea {
     color: var(--backgorund-color-secondary);
 }
 
+.post-id svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--backgorund-color-secondary);
+}
+
 .post-date {
     position: absolute;
     top: 10px;
