@@ -13,6 +13,7 @@ type Post struct {
 	Content     string `db:"content" json:"content"`
 	Rating      int    `db:"rating" json:"rating"`
 	Datetime    int64  `db:"datetime" json:"datetime"`
+	Unlisted    bool   `db:"unlisted" json:"unlisted"`
 }
 
 func InitializeDatabase(db *sqlx.DB) {
@@ -25,12 +26,19 @@ func InitializeDatabase(db *sqlx.DB) {
             content TEXT NOT NULL,
 			thumbnail TEXT NOT NULL,
 			rating INTEGER NOT NULL,
-			datetime INTEGER NOT NULL
+			datetime INTEGER NOT NULL,
+			unlisted BOOLEAN NOT NULL
         )
     `)
 	if err != nil {
 		panic(err)
 	}
+}
+
+func GetUnlistedPosts(db *sqlx.DB) ([]Post, error) {
+	var posts []Post
+	err := db.Select(&posts, "SELECT * FROM posts WHERE unlisted=FALSE")
+	return posts, err
 }
 
 func GetPosts(db *sqlx.DB) ([]Post, error) {
@@ -46,12 +54,12 @@ func GetPostByID(db *sqlx.DB, id int) (Post, error) {
 }
 
 func CreatePostWithID(db *sqlx.DB, post *Post) error {
-	_, err := db.Exec("INSERT INTO posts (id, type, title, description, content, thumbnail, rating, datetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", post.ID, post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime)
+	_, err := db.Exec("INSERT INTO posts (id, type, title, description, content, thumbnail, rating, datetime, unlisted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", post.ID, post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime, post.Unlisted)
 	return err
 }
 
 func UpdatePost(db *sqlx.DB, id int, post *Post) (int64, error) {
-	_, err := db.Exec("UPDATE posts SET type=?, title=?, description=?, content=?, thumbnail=?, rating=?, datetime=? WHERE id=?", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime, id)
+	_, err := db.Exec("UPDATE posts SET type=?, title=?, description=?, content=?, thumbnail=?, rating=?, datetime=?, unlisted=? WHERE id=?", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime, post.Unlisted, id)
 	return int64(id), err
 }
 

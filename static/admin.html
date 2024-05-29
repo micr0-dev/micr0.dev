@@ -53,6 +53,9 @@
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password" class="textbox" required><br><br>
 
+            <label for="unlisted">Unlisted:</label><br>
+            <input type="checkbox" id="unlisted" name="unlisted" value="false"><br><br>
+
             <button type="submit">post me!~</button>
         </form>
     </div>
@@ -70,6 +73,7 @@
         const descriptionField = document.getElementById('description-field');
         const contentField = document.getElementById('content-field');
         const passwordField = document.getElementById('password');
+        const unlistedField = document.getElementById('unlisted');
 
         function updateFormFields() {
             const selectedType = postTypeSelector.value;
@@ -95,7 +99,8 @@
                 title: document.getElementById('title').value,
                 thumbnail: document.getElementById('thumbnail').value,
                 description: document.getElementById('description').value,
-                content: document.getElementById('content').value
+                content: document.getElementById('content').value,
+                unlisted: document.getElementById('unlisted').checked
             };
 
             try {

@@ -244,7 +244,7 @@ function addDelete(post) {
                 console.error('Error deleting post:', data);
             }
         } catch (error) {
-            console.error('Error deleting post:', error);
+            console.error('Error deleting post:', error, data);
         }
 
         deleteButton.disabled = true;

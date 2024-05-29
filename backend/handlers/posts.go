@@ -26,11 +26,22 @@ func NewPostHandler(db *sqlx.DB) *PostHandler {
 }
 
 func (h *PostHandler) GetPosts(c *gin.Context) {
-	posts, err := models.GetPosts(h.DB)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get posts"})
-		return
+	var posts []models.Post
+	var err error
+	if c.GetHeader("password") != os.Getenv("ADMIN_PASSWORD") {
+		posts, err = models.GetUnlistedPosts(h.DB)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get posts"})
+			return
+		}
+	} else {
+		posts, err = models.GetPosts(h.DB)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get posts"})
+			return
+		}
 	}
+
 	c.JSON(http.StatusOK, posts)
 }
 
@@ -70,33 +81,31 @@ func (h *PostHandler) CreatePost(c *gin.Context) {
 
 	newPost.Datetime = time.Now().Unix()
 
-	// Generate a unique ID
 	newPost.ID, err = generateUniqueID(h.DB)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate unique ID"})
 		return
 	}
 
-	// Now insert using the generated ID
 	err = models.CreatePostWithID(h.DB, &newPost)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create post"})
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "Post created successfully", "id": newPost.ID})
+	c.JSON(http.StatusCreated, gin.H{"message": "Post created successfully! id: " + newPost.ID, "id": newPost.ID})
 }
 
 func generateUniqueID(db *sqlx.DB) (string, error) {
-	for i := 1; i <= 1000; i++ { // Limit attempts to avoid infinite loops
-		id := generateRandomHex(4)
+	for i := 1; i <= 1000; i++ {
+		id := generateRandomHex(6)
 		log.Printf("Attempt %d: Generated ID: %s", i, id)
 
 		var exists bool
 		err := db.Get(&exists, "SELECT 1 FROM posts WHERE id = ? LIMIT 1", id)
 		if err != nil && err.Error() != "sql: no rows in result set" {
 			log.Printf("Error checking ID %s: %v", id, err)
-			return "", fmt.Errorf("error checking ID %s: %w", id, err) // Wrap the error
+			return "", fmt.Errorf("error checking ID %s: %w", id, err)
 		}
 
 		if exists {
