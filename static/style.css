@@ -786,18 +786,15 @@ textarea {
 #go-home-container {
     border-radius: 999999px;
     padding: 20px;
-}
-
-#go-home-link {
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
     color: var(--primary-color);
     font-size: 2em;
-    cursor: pointer;
-    transition: color 0.3s, font-size 0.3s;
 }
 
-#go-home-link:hover {
+#go-home-container:hover {
+    transform: scale(1.1);
     color: var(--highlighted-primary);
-    font-size: 2.2em;
 }
 
 /* Dark Mode */
