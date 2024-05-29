@@ -147,7 +147,7 @@ function addShare(post) {
     shareButton.textContent = "Share";
 
     shareButton.addEventListener('click', (event) => {
-        window.location.href = `/article?id=${post.id}`;
+        window.location.href = `/article.html?id=${post.id}`;
     });
 
     shareContainer.appendChild(shareButton);
