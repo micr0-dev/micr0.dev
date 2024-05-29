@@ -88,13 +88,13 @@ func (h *PostHandler) CreatePost(c *gin.Context) {
 }
 
 func generateUniqueID(db *sqlx.DB) (string, error) {
-	for i := 1; i <= 10; i++ { // Limit attempts to avoid infinite loops
+	for i := 1; i <= 1000; i++ { // Limit attempts to avoid infinite loops
 		id := generateRandomHex(4)
 		log.Printf("Attempt %d: Generated ID: %s", i, id)
 
 		var exists bool
 		err := db.Get(&exists, "SELECT 1 FROM posts WHERE id = ? LIMIT 1", id)
-		if err != nil {
+		if err != nil && err.Error() != "sql: no rows in result set" {
 			log.Printf("Error checking ID %s: %v", id, err)
 			return "", fmt.Errorf("error checking ID %s: %w", id, err) // Wrap the error
 		}
