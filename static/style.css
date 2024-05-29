@@ -735,12 +735,25 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+
+}
+
+.interaction-container svg {
+    width: 40px;
+    height: 40px;
+
 }
 
 .share-icon {
-    width: 40px;
-    height: 40px;
+    margin: 0 10px;
+}
+
+.delete-icon {
+    margin: 0 10px;
+}
+
+.edit-icon {
+    margin: 0 10px;
 }
 
 .interaction-container button {

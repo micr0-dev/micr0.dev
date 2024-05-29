@@ -145,8 +145,6 @@ function addShare(post) {
 
     const shareIcon = document.createElement('svg');
     shareIcon.classList.add('share-icon');
-    shareIcon.setAttribute('width', '40px');
-    shareIcon.setAttribute('height', '40px');
     shareIcon.innerHTML = '<use href="#share-icon"></use>';
     shareButton.appendChild(shareIcon);
 
@@ -168,8 +166,6 @@ function addDelete(post) {
 
     const deleteIcon = document.createElement('svg');
     deleteIcon.classList.add('delete-icon');
-    deleteIcon.setAttribute('width', '40px');
-    deleteIcon.setAttribute('height', '40px');
     deleteIcon.innerHTML = '<use href="#delete-icon"></use>';
     deleteButton.appendChild(deleteIcon);
 
@@ -211,8 +207,6 @@ function addEdit(post) {
 
     const editIcon = document.createElement('svg');
     editIcon.classList.add('edit-icon');
-    editIcon.setAttribute('width', '40px');
-    editIcon.setAttribute('height', '40px');
     editIcon.innerHTML = '<use href="#edit-icon"></use>';
     editButton.appendChild(editIcon);
 
