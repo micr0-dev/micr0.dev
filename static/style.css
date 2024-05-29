@@ -498,12 +498,13 @@ textarea {
     border: 2px solid #FFD1DC;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 40px;
+    padding: 30px;
+    padding-bottom: 50px;
+    padding-top: 50px;
     text-align: center;
     width: 80%;
     max-width: 600px;
     margin: 20px auto;
-    padding-top: 0%;
 }
 
 /* TODO: Make responsive design for posts! */
@@ -513,6 +514,7 @@ textarea {
 .post h1 {
     color: var(--primary-color);
     margin-bottom: 10px;
+    margin-top: 0px;
 }
 
 .post h2 {
@@ -725,7 +727,6 @@ textarea {
 
 .microblog-post {
     text-align: left;
-    padding: 30px;
 }
 
 .interaction-container {
@@ -753,7 +754,7 @@ textarea {
     width: 40px;
     height: 40px;
     border-radius: 40px;
-    padding: 10px;
+    padding: 6px;
     background-color: var(--backgorund-color-secondary);
     fill: var(--text-color);
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, fill 0.3s;
