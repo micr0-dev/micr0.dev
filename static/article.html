@@ -24,12 +24,17 @@
     <div id="feed-container" class="standalone"></div>
     </div>
 
-    <!-- FIXME: Whole thing as button -->
     <div>
         <button id="go-home-container" class="textbox">
             <span id="go-home-link">go home!~</span>
         </button>
     </div>
+    <script>
+        document.getElementById('go-home-container').addEventListener('click', () => {
+            window.location.href = '/';
+        });
+    </script>
+
 
     <script type="module" src="posts.js"></script>
     <script src="background.js"></script>
