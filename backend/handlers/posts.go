@@ -25,7 +25,7 @@ func NewPostHandler(db *sqlx.DB) *PostHandler {
 }
 
 func isValidID(id string) bool {
-	if len(id) != 4 {
+	if len(id) != 6 {
 		return false
 	}
 	_, err := hex.DecodeString(id)
