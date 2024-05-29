@@ -20,8 +20,7 @@ function createEditIconSVG() {
     svgElement.innerHTML = `<g id="style=fill">
     <g id="edit">
         <path id="Subtract" fill-rule="evenodd" clip-rule="evenodd"
-            d="M18.9405 3.12087L21.0618 5.24219C22.2334 6.41376 22.2334 8.31326 21.0618 9.48483L19.2586 11.288L12.8947 4.92403L14.6978 3.12087C15.8694 1.94929 17.7689 1.94929 18.9405 3.12087ZM11.834 5.98469L3.70656 14.1121C3.22329 14.5954 2.91952 15.2292 2.84552 15.9086L2.45151 19.5264C2.31313 20.7969 3.38571 21.8695 4.65629 21.7311L8.27401 21.3371C8.95345 21.2631 9.58725 20.9594 10.0705 20.4761L18.1979 12.3486L11.834 5.98469Z"
-            fill="#000000" />
+            d="M18.9405 3.12087L21.0618 5.24219C22.2334 6.41376 22.2334 8.31326 21.0618 9.48483L19.2586 11.288L12.8947 4.92403L14.6978 3.12087C15.8694 1.94929 17.7689 1.94929 18.9405 3.12087ZM11.834 5.98469L3.70656 14.1121C3.22329 14.5954 2.91952 15.2292 2.84552 15.9086L2.45151 19.5264C2.31313 20.7969 3.38571 21.8695 4.65629 21.7311L8.27401 21.3371C8.95345 21.2631 9.58725 20.9594 10.0705 20.4761L18.1979 12.3486L11.834 5.98469Z"/>
     </g>
 </g>`;
     return svgElement;
@@ -294,10 +293,6 @@ async function fetchPosts() {
                 const dateElement = addDateTimestamp(post);
                 postContainer.appendChild(dateElement);
 
-                const share = addShare(post);
-                postContainer.querySelector('.interaction-container').appendChild(share);
-
-                // if page is admin.html, add delete and edit buttons
                 if (window.location.pathname.includes('admin.html')) {
                     const deleteButton = addDelete(post);
                     postContainer.querySelector('.interaction-container').appendChild(deleteButton);
@@ -305,6 +300,9 @@ async function fetchPosts() {
                     const editButton = addEdit(post);
                     postContainer.querySelector('.interaction-container').appendChild(editButton);
                 }
+
+                const share = addShare(post);
+                postContainer.querySelector('.interaction-container').appendChild(share);
 
                 feedContainer.appendChild(postContainer);
             }
