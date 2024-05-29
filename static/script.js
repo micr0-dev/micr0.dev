@@ -52,9 +52,9 @@ async function getFileSize(owner, repo, path, branch = 'main') {
 }
 
 async function updateFilesize() {
-    const files = ['static/index.html', 'static/style.css', 'static/script.js', 'static/background.js', 'static/404.html', 'static/posts.js', 'backend/main.go', 'backend/models/post.go', 'backend/handlers/posts.go']; // Files to get the size of
+    const files = ['static/index.html', 'static/style.css', 'static/script.js', 'static/background.js', 'static/404.html', 'static/posts.js', 'static/admin.html', 'static/article.html', 'backend/main.go', 'backend/models/post.go', 'backend/handlers/posts.go']; // Files to get the size of
 
-    const repo = 'micr0.dev'; // Repository to get the files from
+    const repo = 'micr0.dev';
 
     let totalSize = 0;
 
@@ -75,23 +75,18 @@ async function updateFilesize() {
     }, 100);
 }
 
-// Use the canvas to get the average color of the avatar for glow effect ^^
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const image = new Image();
 
-image.crossOrigin = "Anonymous"; // Enable cross-origin requests
+image.crossOrigin = "Anonymous";
 image.src = 'https://avatars.githubusercontent.com/u/26364458?v=4';
 
-
-// When the image is loaded, draw it on the canvas
 image.onload = function () {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-    // Get the image data from the canvas
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-    // Calculate the average color of the image
     let totalR = 0, totalG = 0, totalB = 0;
     for (let i = 0; i < imageData.data.length; i += 4) {
         totalR += imageData.data[i];
@@ -102,10 +97,8 @@ image.onload = function () {
     const avgG = Math.round(totalG / (imageData.data.length / 4));
     const avgB = Math.round(totalB / (imageData.data.length / 4));
 
-    // Set the glow color based on the average color of the image
     const glowColor = `rgba(${avgR}, ${avgG}, ${avgB}, 0.4)`;
 
-    // Apply the glow effect to the profile picture
     const profilePicture = document.getElementById('avatar');
     profilePicture.style.filter = `drop-shadow(0 0 20px ${glowColor})`;
 };
@@ -133,10 +126,8 @@ function scrollToContent() {
     document.querySelector('.additional-content').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Fetch most starred repositories
 async function fetchMostStarredRepos() {
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=50`);
-    // handle errors
     if (!response.ok) {
         throw new Error(`Failed to fetch repositories: ${response.status} ${response.statusText}`);
     }
@@ -144,17 +135,15 @@ async function fetchMostStarredRepos() {
     return repos;
 }
 
-// Create project cards
 function createProjectCards(repos) {
     const projectsContainer = document.getElementById('projects-container');
-    repos.sort((a, b) => b.stargazers_count - a.stargazers_count); // Sort by stars
+    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
     repos = repos.filter(repo => repo.description !== null);
 
     repos = repos.slice(0, 5);
     repos.forEach(repo => {
         const card = document.createElement('div');
         card.classList.add('project-card');
-        // make the card clickable
         card.addEventListener('click', () => {
             window.open(repo.html_url, '_blank');
         });
@@ -168,10 +157,8 @@ function createProjectCards(repos) {
     });
 }
 
-// Initialize
 async function githubProjects() {
     const repos = await fetchMostStarredRepos();
-    // display error if fetch fails
     if (!repos) {
         const error = document.createElement('div');
         error.classList.add('project-card');
@@ -184,9 +171,6 @@ async function githubProjects() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Enable dark mode
-
-
     updateTime();
     setInterval(updateTime, 1000);
 
