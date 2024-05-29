@@ -190,9 +190,7 @@ function addDelete(post) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-button');
 
-    const deleteIcon = document.createElement('svg');
-    deleteIcon.classList.add('delete-icon');
-    deleteIcon.innerHTML = '<use href="#delete-icon"></use>';
+    const deleteIcon = createDeleteIconSVG();
     deleteButton.appendChild(deleteIcon);
 
     deleteButton.addEventListener('click', async (event) => {
@@ -231,9 +229,7 @@ function addEdit(post) {
     const editButton = document.createElement('button');
     editButton.classList.add('edit-button');
 
-    const editIcon = document.createElement('svg');
-    editIcon.classList.add('edit-icon');
-    editIcon.innerHTML = '<use href="#edit-icon"></use>';
+    const editIcon = createEditIconSVG();
     editButton.appendChild(editIcon);
 
     editButton.addEventListener('click', (event) => {
