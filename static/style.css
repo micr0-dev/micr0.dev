@@ -582,12 +582,6 @@ textarea {
     width: 100%;
     border-radius: 20px;
     margin: 10px 0;
-    transition: transform 0.3s ease-in-out;
-}
-
-
-.post img:hover {
-    transform: scale(1.2);
 }
 
 .post hr {

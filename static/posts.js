@@ -156,7 +156,7 @@ function addDateTimestamp(post) {
     const dateElement = document.createElement('div');
     dateElement.classList.add('post-date');
     const dateText = document.createElement('span');
-    dateText.textContent = new Date(post.date).toLocaleString();
+    dateText.textContent = post.date;
     dateElement.appendChild(dateText);
 
     return dateElement;
@@ -239,8 +239,6 @@ function addEdit(post) {
 
     return editContainer;
 }
-
-//TODO: zoom in on image when hovered
 
 async function fetchPosts() {
     let type = 'all';
