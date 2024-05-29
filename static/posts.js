@@ -128,9 +128,8 @@ function addId(post) {
 
 function addDateTimestamp(post) {
     const dateElement = document.createElement('div');
-    dateElement.classList.add('date-timestamp');
+    dateElement.classList.add('post-date');
     const dateText = document.createElement('span');
-
     dateText.textContent = new Date(post.date).toLocaleString();
     dateElement.appendChild(dateText);
 
