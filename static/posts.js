@@ -143,10 +143,14 @@ function addShare(post) {
     const shareButton = document.createElement('button');
     shareButton.classList.add('share-button');
 
+    const shareIconContainer = document.createElement('div');
+    shareIconContainer.classList.add('share-icon-container');
+    shareButton.appendChild(shareIconContainer);
+
     const shareIcon = document.createElement('svg');
     shareIcon.classList.add('share-icon');
     shareIcon.innerHTML = '<use href="#share-icon"></use>';
-    shareButton.appendChild(shareIcon);
+    shareIconContainer.appendChild(shareIcon);
 
     shareButton.addEventListener('click', (event) => {
         window.location.href = `/article.html?id=${post.id}`;

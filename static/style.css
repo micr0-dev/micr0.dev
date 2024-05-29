@@ -744,15 +744,15 @@ textarea {
 
 }
 
-.share-icon {
+.share-container {
     margin: 0 10px;
 }
 
-.delete-icon {
+.delete-container {
     margin: 0 10px;
 }
 
-.edit-icon {
+.edit-container {
     margin: 0 10px;
 }
 
@@ -762,7 +762,6 @@ textarea {
     border-radius: 40px;
     background-color: var(--backgorund-color-secondary);
     fill: var(--text-color);
-    display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, fill 0.3s;
