@@ -150,3 +150,20 @@ func (h *PostHandler) RatePost(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Post rated successfully"})
 }
+
+func (h *PostHandler) GetDBFilesize(c *gin.Context) {
+	file, err := os.Open("./posts.db")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get database file size"})
+		return
+	}
+	defer file.Close()
+
+	fi, err := file.Stat()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get database file size"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"size": fi.Size()})
+}
