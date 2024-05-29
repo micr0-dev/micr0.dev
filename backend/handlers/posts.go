@@ -54,7 +54,7 @@ func (h *PostHandler) GetPosts(c *gin.Context) {
 
 func (h *PostHandler) GetPostByID(c *gin.Context) {
 	id := c.Param("id")
-	if isValidID(id) {
+	if !isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}
@@ -141,7 +141,7 @@ func (h *PostHandler) UpdatePost(c *gin.Context) {
 	}
 
 	id := c.Param("id")
-	if isValidID(id) {
+	if !isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}
@@ -168,7 +168,7 @@ func (h *PostHandler) DeletePost(c *gin.Context) {
 	}
 
 	id := c.Param("id")
-	if isValidID(id) {
+	if !isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}
@@ -184,7 +184,7 @@ func (h *PostHandler) DeletePost(c *gin.Context) {
 
 func (h *PostHandler) RatePost(c *gin.Context) {
 	id := c.Param("id")
-	if isValidID(id) {
+	if !isValidID(id) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid post ID"})
 		return
 	}
