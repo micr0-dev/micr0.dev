@@ -14,6 +14,10 @@ function buildImagePost(post) {
     postContainer.appendChild(titleElement);
     postContainer.appendChild(imageElement);
 
+    const interactionContainer = document.createElement('div');
+    interactionContainer.classList.add('interaction-container');
+    postContainer.appendChild(interactionContainer);
+
     return postContainer;
 }
 
@@ -45,11 +49,14 @@ function buildArticlePost(post) {
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
 
+    const interactionContainer = document.createElement('div');
+    interactionContainer.classList.add('interaction-container');
+
     const readingTime = estimateReadingTime(post.content);
     const readingTimeElement = document.createElement('span');
     readingTimeElement.classList.add('reading-time');
     readingTimeElement.textContent = `estimated reading time: ${readingTime} min`;
-    postContainer.appendChild(readingTimeElement);
+    interactionContainer.appendChild(readingTimeElement);
 
     return postContainer;
 }
@@ -62,6 +69,10 @@ function buildMicroblogPost(post) {
     contentElement.innerHTML = marked(post.content);
 
     postContainer.appendChild(contentElement);
+
+    const interactionContainer = document.createElement('div');
+    interactionContainer.classList.add('interaction-container');
+    postContainer.appendChild(interactionContainer);
 
     return postContainer;
 }
@@ -113,6 +124,26 @@ function addId(post) {
     return idElement;
 }
 
+//TODO: share button
+function addShare(post) {
+    const shareContainer = document.createElement('div');
+    shareContainer.classList.add('share-container');
+
+    const shareButton = document.createElement('button');
+    shareButton.classList.add('share-button');
+    shareButton.textContent = "Share";
+
+    shareButton.addEventListener('click', (event) => {
+        window.location.href = `/article?id=${post.id}`;
+    });
+
+    shareContainer.appendChild(shareButton);
+
+    return shareContainer;
+}
+
+//TODO: zoom in on image when hovered
+
 async function fetchPosts() {
     let type = 'all';
     const feedContainer = document.getElementById('feed-container');
@@ -160,6 +191,9 @@ async function fetchPosts() {
 
                 const idElement = addId(post);
                 postContainer.appendChild(idElement);
+
+                const share = addShare(post);
+                postContainer.querySelector('.interaction-container').appendChild(share);
 
                 feedContainer.appendChild(postContainer);
             }
