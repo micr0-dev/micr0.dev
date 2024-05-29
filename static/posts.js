@@ -26,6 +26,39 @@ function createEditIconSVG() {
     return svgElement;
 }
 
+function unixToDate(unixTimestamp) {
+    return new Date(unixTimestamp * 1000);
+}
+
+function timeSince(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+
+    let interval = seconds / 31536000;
+
+    if (interval > 1) {
+        return Math.floor(interval) + " years ago";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+        return Math.floor(interval) + " months ago";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+        return Math.floor(interval) + " days ago";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+        return Math.floor(interval) + " hours ago";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+        return Math.floor(interval) + " minutes ago";
+    }
+
+    return Math.floor(seconds) + " seconds ago";
+}
+
+
 function buildImagePost(post) {
     const postContainer = document.createElement('div');
     postContainer.classList.add('post', 'image-post');
@@ -156,7 +189,7 @@ function addDateTimestamp(post) {
     const dateElement = document.createElement('div');
     dateElement.classList.add('post-date');
     const dateText = document.createElement('span');
-    dateText.textContent = new Date(post.datetime).toLocaleString();
+    dateText.textContent = timeSince(unixToDate(post.datetime));
     dateElement.appendChild(dateText);
 
     return dateElement;
