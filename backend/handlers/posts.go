@@ -4,6 +4,8 @@ import (
 	"crypto/rand"
 	"database/sql"
 	"encoding/hex"
+	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -86,18 +88,27 @@ func (h *PostHandler) CreatePost(c *gin.Context) {
 }
 
 func generateUniqueID(db *sqlx.DB) (string, error) {
-	for { // Keep trying until a unique ID is found
+	for i := 1; i <= 10; i++ { // Limit attempts to avoid infinite loops
 		id := generateRandomHex(4)
+		log.Printf("Attempt %d: Generated ID: %s", i, id)
+
 		var exists bool
 		err := db.Get(&exists, "SELECT 1 FROM posts WHERE id = ? LIMIT 1", id)
 		if err != nil {
-			return "", err // Database error
+			log.Printf("Error checking ID %s: %v", id, err)
+			return "", fmt.Errorf("error checking ID %s: %w", id, err) // Wrap the error
 		}
-		if !exists {
-			return id, nil // Found a unique ID!
+
+		if exists {
+			log.Printf("ID %s already exists, trying again...", id)
+		} else {
+			log.Printf("Found unique ID: %s", id)
+			return id, nil
 		}
-		// ID already exists, try again
 	}
+
+	log.Println("Failed to generate a unique ID after 10 attempts.")
+	return "", fmt.Errorf("failed to generate a unique ID after 10 attempts")
 }
 
 func generateRandomHex(length int) string {
