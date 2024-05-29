@@ -28,7 +28,7 @@ function createEditIconSVG() {
 
 function createLockIconSVG() {
     const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svgElement.setAttribute('viewBox', '0 0 330 330');
+    svgElement.setAttribute('viewBox', '0 0 558 800');
     svgElement.innerHTML = `<path xmlns="http://www.w3.org/2000/svg" d="M36.3636 800H521.212C541.295 800 557.576 783.719 557.576 763.636V351.515C557.576 331.433 541.295 315.152 521.212 315.152H484.848V206.061C484.848 92.4388 392.41 0 278.788 0C165.166 0 72.7273 92.4388 72.7273 206.061V315.152H36.3636C16.2812 315.152 0 331.433 0 351.515V763.636C0 783.719 16.2812 800 36.3636 800ZM145.455 206.061C145.455 132.541 205.268 72.7273 278.788 72.7273C352.308 72.7273 412.121 132.541 412.121 206.061V315.152H145.455V206.061Z"`;
     return svgElement;
 }
