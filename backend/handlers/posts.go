@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"crypto/rand"
 	"database/sql"
+	"encoding/hex"
 	"net/http"
 	"os"
 	"strconv"
@@ -58,20 +60,52 @@ func (h *PostHandler) CreatePost(c *gin.Context) {
 	}
 
 	var newPost models.Post
-	if err := c.ShouldBindJSON(&newPost); err != nil {
+	err := c.ShouldBindJSON(&newPost)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	newPost.Datetime = time.Now().Unix()
 
-	insertID, err := models.CreatePost(h.DB, &newPost)
+	// Generate a unique ID
+	newPost.ID, err = generateUniqueID(h.DB)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate unique ID"})
+		return
+	}
+
+	// Now insert using the generated ID
+	err = models.CreatePostWithID(h.DB, &newPost)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create post"})
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "Post created successfully", "id": insertID})
+	c.JSON(http.StatusCreated, gin.H{"message": "Post created successfully", "id": newPost.ID})
+}
+
+func generateUniqueID(db *sqlx.DB) (string, error) {
+	for { // Keep trying until a unique ID is found
+		id := generateRandomHex(4)
+		var exists bool
+		err := db.Get(&exists, "SELECT 1 FROM posts WHERE id = ? LIMIT 1", id)
+		if err != nil {
+			return "", err // Database error
+		}
+		if !exists {
+			return id, nil // Found a unique ID!
+		}
+		// ID already exists, try again
+	}
+}
+
+func generateRandomHex(length int) string {
+	b := make([]byte, length/2)
+	if _, err := rand.Read(b); err != nil {
+		panic(err)
+	}
+	return hex.EncodeToString(b)
 }
 
 func (h *PostHandler) UpdatePost(c *gin.Context) {

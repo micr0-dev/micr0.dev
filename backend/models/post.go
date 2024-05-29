@@ -5,7 +5,7 @@ import (
 )
 
 type Post struct {
-	ID          int    `db:"id" json:"id"`
+	ID          string `db:"id" json:"id"`
 	Type        string `db:"type" json:"type"`
 	Title       string `db:"title" json:"title"`
 	Description string `db:"description" json:"description"`
@@ -18,7 +18,7 @@ type Post struct {
 func InitializeDatabase(db *sqlx.DB) {
 	_, err := db.Exec(`
         CREATE TABLE IF NOT EXISTS posts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
 			type TEXT NOT NULL,
             title TEXT NOT NULL,
 			description TEXT NOT NULL,
@@ -45,12 +45,9 @@ func GetPostByID(db *sqlx.DB, id int) (Post, error) {
 	return post, err
 }
 
-func CreatePost(db *sqlx.DB, post *Post) (int64, error) {
-	result, err := db.Exec("INSERT INTO posts (type, title, description, content, thumbnail, rating, datetime) VALUES (?, ?, ?, ?, ?, ?, ?)", post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime)
-	if err != nil {
-		return 0, err
-	}
-	return result.LastInsertId()
+func CreatePostWithID(db *sqlx.DB, post *Post) error {
+	_, err := db.Exec("INSERT INTO posts (id, type, title, description, content, thumbnail, rating, datetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", post.ID, post.Type, post.Title, post.Description, post.Content, post.Thumbnail, post.Rating, post.Datetime)
+	return err
 }
 
 func UpdatePost(db *sqlx.DB, id int, post *Post) (int64, error) {
