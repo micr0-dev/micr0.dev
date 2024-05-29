@@ -649,11 +649,11 @@ textarea {
     bottom: 10px;
     left: 10px;
     color: var(--backgorund-color-secondary);
+    display: flex;
+    align-items: center;
 }
 
 .post-id svg {
-    position: absolute;
-    left: 10px;
     width: 20px;
     height: 20px;
     fill: var(--backgorund-color-secondary);
