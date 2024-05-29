@@ -1,5 +1,32 @@
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
+function createShareIconSVG() {
+    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgElement.setAttribute('viewBox', '0 0 458.624 458.624');
+    svgElement.innerHTML = `<path d="M339.588,314.529c-14.215,0-27.456,4.133-38.621,11.239l-112.682-78.67c1.809-6.315,2.798-12.976,2.798-19.871c0-6.896-0.989-13.557-2.798-19.871l109.64-76.547c11.764,8.356,26.133,13.286,41.662,13.286c39.79,0,72.047-32.257,72.047-72.047C411.634,32.258,379.378,0,339.588,0c-39.79,0-72.047,32.257-72.047,72.047c0,5.255,0.578,10.373,1.646,15.308l-112.424,78.491c-10.974-6.759-23.892-10.666-37.727-10.666c-39.79,0-72.047,32.257-72.047,72.047s32.256,72.047,72.047,72.047c13.834,0,26.753-3.907,37.727-10.666l113.292,79.097c-1.629,6.017-2.514,12.34-2.514,18.872c0,39.79,32.257,72.047,72.047,72.047c39.79,0,72.047-32.257,72.047-72.047C411.635,346.787,379.378,314.529,339.588,314.529z"/>`;
+    return svgElement;
+}
+
+function createDeleteIconSVG() {
+    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgElement.setAttribute('viewBox', '0 0 24 24');
+    svgElement.innerHTML = `<path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z" />`
+    return svgElement;
+}
+
+function createEditIconSVG() {
+    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgElement.setAttribute('viewBox', '0 0 24 24');
+    svgElement.innerHTML = `<g id="style=fill">
+    <g id="edit">
+        <path id="Subtract" fill-rule="evenodd" clip-rule="evenodd"
+            d="M18.9405 3.12087L21.0618 5.24219C22.2334 6.41376 22.2334 8.31326 21.0618 9.48483L19.2586 11.288L12.8947 4.92403L14.6978 3.12087C15.8694 1.94929 17.7689 1.94929 18.9405 3.12087ZM11.834 5.98469L3.70656 14.1121C3.22329 14.5954 2.91952 15.2292 2.84552 15.9086L2.45151 19.5264C2.31313 20.7969 3.38571 21.8695 4.65629 21.7311L8.27401 21.3371C8.95345 21.2631 9.58725 20.9594 10.0705 20.4761L18.1979 12.3486L11.834 5.98469Z"
+            fill="#000000" />
+    </g>
+</g>`;
+    return svgElement;
+}
+
 function buildImagePost(post) {
     const postContainer = document.createElement('div');
     postContainer.classList.add('post', 'image-post');
@@ -143,14 +170,9 @@ function addShare(post) {
     const shareButton = document.createElement('button');
     shareButton.classList.add('share-button');
 
-    const shareIconContainer = document.createElement('div');
-    shareIconContainer.classList.add('share-icon-container');
-    shareButton.appendChild(shareIconContainer);
 
-    const shareIcon = document.createElement('svg');
-    shareIcon.classList.add('share-icon');
-    shareIcon.innerHTML = '<use href="#share-icon"></use>';
-    shareIconContainer.appendChild(shareIcon);
+    const shareIcon = createShareIconSVG();
+    shareButton.appendChild(shareIcon);
 
     shareButton.addEventListener('click', (event) => {
         window.location.href = `/article.html?id=${post.id}`;
