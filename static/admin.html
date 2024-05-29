@@ -120,6 +120,8 @@
 
                     form.reset();
                     updateFormFields();
+
+                    window.location.reload();
                 } else {
                     const data = await response.json();
                     alert(`Error creating post: ${data.error}`);
