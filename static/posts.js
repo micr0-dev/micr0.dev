@@ -227,7 +227,6 @@ function addDelete(post) {
     deleteButton.appendChild(deleteIcon);
 
     deleteButton.addEventListener('click', async (event) => {
-        // Ask for password before deleting post
         const password = prompt('Please enter your password to delete this post:');
 
         try {
@@ -289,10 +288,24 @@ async function fetchPosts() {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
+    let password;
+
+    if (window.location.pathname.includes('admin.html')) {
+        password = localStorage.getItem('password');
+        if (!password) {
+            password = prompt('Please enter your admin password:');
+            localStorage.setItem
+        }
+    }
+
     try {
         let posts;
         if (!postId) {
-            const response = await fetch('/api/posts');
+            const response = await fetch(`/api/posts`, {
+                headers: {
+                    'password': password
+                }
+            });
             posts = await response.json();
         } else {
             const response = await fetch(`/api/posts/${postId}`);

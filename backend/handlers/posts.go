@@ -99,7 +99,7 @@ func (h *PostHandler) CreatePost(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "Post created successfully! id: " + newPost.ID, "id": newPost.ID})
+	c.JSON(http.StatusCreated, gin.H{"message": "Post created successfully!", "id": newPost.ID})
 }
 
 func generateUniqueID(db *sqlx.DB) (string, error) {

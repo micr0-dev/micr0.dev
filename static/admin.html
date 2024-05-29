@@ -114,9 +114,12 @@
                 });
 
                 if (response.ok) {
-                    alert('Post created successfully!');
-                    form.reset(); // Clear the form
-                    updateFormFields(); // Update fields after reset
+                    alert('Post created successfully! ID: ' + (await response.json()).id);
+
+                    localStorage.setItem('password', passwordField.value);
+
+                    form.reset();
+                    updateFormFields();
                 } else {
                     const data = await response.json();
                     alert(`Error creating post: ${data.error}`);

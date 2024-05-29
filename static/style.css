@@ -750,6 +750,7 @@ textarea {
     margin-left: 10px;
 }
 
+/* FIXME: make it look better and less invasive */
 .interaction-container button {
     width: 40px;
     height: 40px;
