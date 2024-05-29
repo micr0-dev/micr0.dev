@@ -18,7 +18,7 @@ type Post struct {
 func InitializeDatabase(db *sqlx.DB) {
 	_, err := db.Exec(`
         CREATE TABLE IF NOT EXISTS posts (
-            id INTEGER PRIMARY KEY,
+            id TEXT PRIMARY KEY,
 			type TEXT NOT NULL,
             title TEXT NOT NULL,
 			description TEXT NOT NULL,
