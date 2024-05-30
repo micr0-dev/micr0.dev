@@ -505,6 +505,9 @@ textarea {
     width: 80%;
     max-width: 600px;
     margin: 20px auto;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 /* FIXME: Make responsive design for posts! */
@@ -568,6 +571,7 @@ textarea {
     padding: 5px;
     border-radius: 5px;
     font-family: 'Courier New', monospace;
+    hyphens: none;
     line-height: 1.5;
 }
 
