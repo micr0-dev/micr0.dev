@@ -507,10 +507,6 @@ textarea {
     margin: 20px auto;
 }
 
-/* FIXME: Make responsive design for posts! */
-
-/* All the formatting for markdown */
-
 .post h1 {
     color: var(--primary-color);
     margin-bottom: 10px;
