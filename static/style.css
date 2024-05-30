@@ -932,11 +932,11 @@ textarea {
     }
 
     .post h1 {
-        font-size: 1.5em;
+        font-size: 2em;
     }
 
     .post h2 {
-        font-size: 1.3em;
+        font-size: 1.5em;
     }
 
     .post h3 {
@@ -944,7 +944,7 @@ textarea {
     }
 
     .post p {
-        font-size: 0.9em;
+        font-size: 1em;
         line-height: 1.4;
         margin: 8px 0;
     }
@@ -956,7 +956,7 @@ textarea {
 
     .post code,
     .post pre {
-        font-size: 0.9em;
+        font-size: 1em;
     }
 
     #go-home-container {
@@ -966,14 +966,5 @@ textarea {
 
     .article-post img {
         width: 70%;
-    }
-
-    .reading-time {
-        font-size: 12px;
-    }
-
-    .post-id,
-    .post-date {
-        font-size: 10px;
     }
 }
