@@ -102,6 +102,21 @@ function buildArticlePost(post) {
     contentElement.innerHTML = marked(post.content);
 
     postContainer.appendChild(titleElement);
+
+    const interactionContainer = document.createElement('div');
+    interactionContainer.classList.add('interaction-container');
+
+    const readingTime = estimateReadingTime(post.content);
+    const readingTimeElement = document.createElement('span');
+    readingTimeElement.classList.add('reading-time');
+    readingTimeElement.textContent = `estimated reading time: ${readingTime} min`;
+
+    if (window.innerWidth > 600) {
+        interactionContainer.appendChild(readingTimeElement);
+    } else {
+        postContainer.appendChild(readingTimeElement);
+    }
+
     if (post.thumbnail) {
         const imageElement = document.createElement('img');
         imageElement.src = post.thumbnail;
@@ -115,15 +130,6 @@ function buildArticlePost(post) {
     }
     postContainer.appendChild(lineBreak);
     postContainer.appendChild(contentElement);
-
-    const interactionContainer = document.createElement('div');
-    interactionContainer.classList.add('interaction-container');
-
-    const readingTime = estimateReadingTime(post.content);
-    const readingTimeElement = document.createElement('span');
-    readingTimeElement.classList.add('reading-time');
-    readingTimeElement.textContent = `estimated reading time: ${readingTime} min`;
-    interactionContainer.appendChild(readingTimeElement);
 
     postContainer.appendChild(interactionContainer);
 
@@ -187,14 +193,15 @@ function addId(post) {
     const idElement = document.createElement('div');
     idElement.classList.add('post-id');
 
+    const idText = document.createElement('span');
+    idText.textContent = "#" + post.id;
+    idElement.appendChild(idText);
+
     if (post.unlisted) {
         const lockIcon = createLockIconSVG();
         idElement.appendChild(lockIcon);
     }
 
-    const idText = document.createElement('span');
-    idText.textContent = "#" + post.id;
-    idElement.appendChild(idText);
     return idElement;
 }
 
