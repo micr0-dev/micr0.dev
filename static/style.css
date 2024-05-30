@@ -926,11 +926,9 @@ textarea {
         margin: 10px 0;
     }
 
-    .image-post {}
-
-    .article-post {}
-
-    .microblog-post {}
+    .microblog-post {
+        padding-top: 50px;
+    }
 
     .post h1 {
         font-size: 1.5em;
@@ -948,6 +946,10 @@ textarea {
         font-size: 0.9em;
         line-height: 1.4;
         margin: 8px 0;
+    }
+
+    .post hr {
+        margin: 10px -16px;
     }
 
     .post code,
