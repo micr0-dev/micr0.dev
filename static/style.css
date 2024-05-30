@@ -912,5 +912,126 @@ textarea {
         height: 30px;
     }
 
+    /* posts */
 
+    .post {
+        width: 80%;
+
+    }
+
+    .post h1 {
+        font-size: 2em;
+    }
+
+    .post {
+        font-size: 1em;
+    }
+
+    .post img {
+        width: 100%;
+    }
+
+    .post hr {
+        margin: 20px -16px;
+    }
+
+    .post table {
+        font-size: 0.8em;
+    }
+
+    .post th {
+        padding: 5px;
+    }
+
+    .post td {
+        padding: 5px;
+    }
+
+    .post .small {
+        font-size: 0.8em;
+    }
+
+    .post .medium {
+        font-size: 1em;
+    }
+
+    .post .large {
+        font-size: 1.2em;
+    }
+
+    .post-id {
+        bottom: 5px;
+        left: 5px;
+    }
+
+    .post-date {
+        top: 5px;
+        left: 5px;
+    }
+
+    .rating-container {
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .rating-container button {
+        width: 30px;
+        height: 30px;
+        font-size: 0.6em;
+    }
+
+    .interaction-container {
+        top: 5px;
+        right: 5px;
+    }
+
+    .interaction-container button {
+        width: 30px;
+        height: 30px;
+        font-size: 0.6em;
+    }
+
+    .share-container {
+        margin-left: 5px;
+    }
+
+    .delete-container {
+        margin-left: 5px;
+    }
+
+    .edit-container {
+        margin-left: 5px;
+    }
+
+    .reading-time {
+        font-size: 12px;
+    }
+
+    .post .center {
+        text-align: center;
+    }
+
+    .post .right {
+        text-align: right;
+    }
+
+    .post .left {
+        text-align: left;
+    }
+
+    .post .justify {
+        text-align: justify;
+    }
+
+    .post .small {
+        font-size: 0.8em;
+    }
+
+    .post .medium {
+        font-size: 1.2em;
+    }
+
+    .post .large {
+        font-size: 1.6em;
+    }
 }
