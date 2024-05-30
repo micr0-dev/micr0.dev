@@ -949,7 +949,8 @@ textarea {
     }
 
     .post hr {
-        margin: 10px -16px;
+        margin-left: 0px;
+        margin-right: 0px;
     }
 
     .post code,
