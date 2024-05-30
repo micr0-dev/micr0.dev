@@ -571,7 +571,6 @@ textarea {
     padding: 5px;
     border-radius: 5px;
     font-family: 'Courier New', monospace;
-    hyphens: none;
     line-height: 1.5;
 }
 
@@ -580,6 +579,9 @@ textarea {
     padding: 10px;
     border-radius: 5px;
     font-family: 'Courier New', monospace;
+    overflow-x: auto;
+    white-space: pre;
+    hyphens: none;
 }
 
 .post img {
