@@ -918,10 +918,9 @@ textarea {
     }
 
     .post {
-        width: 100%;
+        width: 90%;
         padding: 15px;
         margin: 10px 0;
-        border-radius: 10px;
     }
 
     .post h1 {
@@ -942,25 +941,9 @@ textarea {
         margin: 8px 0;
     }
 
-    .post img {
-        border-radius: 10px;
-    }
-
     .post code,
     .post pre {
         font-size: 0.9em;
-    }
-
-    .rating-container button {
-        width: 30px;
-        height: 30px;
-        border-radius: 30px;
-    }
-
-    .interaction-container button {
-        width: 30px;
-        height: 30px;
-        padding: 4px;
     }
 
     #go-home-container {
@@ -969,7 +952,7 @@ textarea {
     }
 
     .article-post img {
-        width: 100%;
+        width: 70%;
     }
 
     .reading-time {
