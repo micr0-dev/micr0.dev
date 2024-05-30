@@ -657,8 +657,7 @@ textarea {
 }
 
 .post-id svg {
-    width: 20px;
-    height: 20px;
+    height: 100%;
     fill: var(--backgorund-color-secondary);
 }
 
