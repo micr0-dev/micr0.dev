@@ -866,7 +866,7 @@ textarea {
         width: 80%;
         padding: 20px;
         padding-bottom: 30px;
-        padding-top: 40px;
+        margin-top: 40px;
     }
 
     .avatar {
