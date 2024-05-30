@@ -926,6 +926,30 @@ textarea {
         margin: 10px 0;
     }
 
+    .image-post {
+        width: 90%;
+        padding-top: 20px;
+        padding: 10px;
+        padding-bottom: 50px;
+        margin: 10px 0;
+    }
+
+    .article-post {
+        width: 90%;
+        padding-top: 20px;
+        padding: 10px;
+        padding-bottom: 50px;
+        margin: 10px 0;
+    }
+
+    .microblog-post {
+        width: 90%;
+        padding-top: 20px;
+        padding: 10px;
+        padding-bottom: 50px;
+        margin: 10px 0;
+    }
+
     .post h1 {
         font-size: 1.5em;
     }
