@@ -913,9 +913,71 @@ textarea {
     }
 
     /* posts */
+    #blog-container {
+        padding: 10px;
+    }
 
     .post {
-        width: 80%;
-        margin: 20px auto;
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+    }
+
+    .post h1 {
+        font-size: 1.5em;
+    }
+
+    .post h2 {
+        font-size: 1.3em;
+    }
+
+    .post h3 {
+        font-size: 1.2em;
+    }
+
+    .post p {
+        font-size: 0.9em;
+        line-height: 1.4;
+        margin: 8px 0;
+    }
+
+    .post img {
+        border-radius: 10px;
+    }
+
+    .post code,
+    .post pre {
+        font-size: 0.9em;
+    }
+
+    .rating-container button {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+    }
+
+    .interaction-container button {
+        width: 30px;
+        height: 30px;
+        padding: 4px;
+    }
+
+    #go-home-container {
+        padding: 15px;
+        font-size: 1.5em;
+    }
+
+    .article-post img {
+        width: 100%;
+    }
+
+    .reading-time {
+        font-size: 12px;
+    }
+
+    .post-id,
+    .post-date {
+        font-size: 10px;
     }
 }
