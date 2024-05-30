@@ -314,14 +314,14 @@ async function fetchPosts() {
     try {
         let posts;
         if (!postId) {
-            const response = await fetch(`http://micr0.dev/api/posts`, {
+            const response = await fetch(`micr0.dev/api/posts`, {
                 headers: {
                     'password': password
                 }
             });
             posts = await response.json();
         } else {
-            const response = await fetch(`http://micr0.dev/api/posts/${postId}`);
+            const response = await fetch(`/api/posts/${postId}`);
             const post = await response.json();
             posts = [post];
         }
