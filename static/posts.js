@@ -366,9 +366,10 @@ async function fetchPosts() {
                     postContainer.querySelector('.interaction-container').appendChild(editButton);
                 }
 
-                const share = addShare(post);
-                postContainer.querySelector('.interaction-container').appendChild(share);
-
+                if (!feedContainer.classList.contains('standalone')) {
+                    const share = addShare(post);
+                    postContainer.querySelector('.interaction-container').appendChild(share);
+                }
                 feedContainer.appendChild(postContainer);
             }
         });
