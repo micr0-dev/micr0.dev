@@ -913,13 +913,17 @@ textarea {
     }
 
     /* posts */
-    #blog-container {
-        padding: 10px;
-    }
-
     .post {
         width: 90%;
         padding: 15px;
+        margin: 10px 0;
+    }
+
+    .image-post {
+        width: 90%;
+        padding: 10px;
+        padding-top: 20px;
+        padding-bottom: 50px;
         margin: 10px 0;
     }
 
