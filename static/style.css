@@ -920,35 +920,17 @@ textarea {
 
     .post {
         width: 90%;
-        padding-top: 20px;
+        padding-top: 40px;
         padding: 10px;
         padding-bottom: 50px;
         margin: 10px 0;
     }
 
-    .image-post {
-        width: 90%;
-        padding-top: 20px;
-        padding: 10px;
-        padding-bottom: 50px;
-        margin: 10px 0;
-    }
+    .image-post {}
 
-    .article-post {
-        width: 90%;
-        padding-top: 20px;
-        padding: 10px;
-        padding-bottom: 50px;
-        margin: 10px 0;
-    }
+    .article-post {}
 
-    .microblog-post {
-        width: 90%;
-        padding-top: 20px;
-        padding: 10px;
-        padding-bottom: 50px;
-        margin: 10px 0;
-    }
+    .microblog-post {}
 
     .post h1 {
         font-size: 1.5em;
