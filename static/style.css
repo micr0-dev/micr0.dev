@@ -922,9 +922,13 @@ textarea {
     .post {
         width: 90%;
         padding: 10px;
-        padding-top: 20px;
+        padding-top: 30px;
         padding-bottom: 50px;
         margin: 10px 0;
+    }
+
+    .article-post {
+        padding-top: 50px;
     }
 
     .microblog-post {
