@@ -314,7 +314,7 @@ async function fetchPosts() {
     try {
         let posts;
         if (!postId) {
-            const response = await fetch(`micr0.dev/api/posts`, {
+            const response = await fetch(`/api/posts`, {
                 headers: {
                     'password': password
                 }
