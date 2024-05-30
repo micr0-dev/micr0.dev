@@ -657,7 +657,8 @@ textarea {
 }
 
 .post-id svg {
-    height: 100%;
+    width: 20px;
+    height: 20px;
     fill: var(--backgorund-color-secondary);
 }
 
@@ -956,6 +957,11 @@ textarea {
     .post code,
     .post pre {
         font-size: 1em;
+    }
+
+    .post-id svg {
+        width: 15px;
+        height: 15px;
     }
 
     #go-home-container {
