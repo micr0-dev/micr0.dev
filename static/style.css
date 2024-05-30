@@ -913,16 +913,15 @@ textarea {
     }
 
     /* posts */
-    .post {
-        width: 90%;
-        padding: 15px;
-        margin: 10px 0;
+
+    #feed-container {
+        padding-top: 40px;
     }
 
-    .image-post {
+    .post {
         width: 90%;
-        padding: 10px;
         padding-top: 20px;
+        padding: 10px;
         padding-bottom: 50px;
         margin: 10px 0;
     }
