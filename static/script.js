@@ -40,6 +40,173 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const image = new Image();
+
+image.crossOrigin = "Anonymous";
+image.src = 'https://avatars.githubusercontent.com/u/26364458?v=4';
+
+image.onload = function () {
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const colorCount = {};
+    let maxCount = 0;
+    let accentColor = '';
+
+    let totalR = 0, totalG = 0, totalB = 0;
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        totalR += imageData.data[i];
+        totalG += imageData.data[i + 1];
+        totalB += imageData.data[i + 2];
+    }
+    const avgR = Math.round(totalR / (imageData.data.length / 4));
+    const avgG = Math.round(totalG / (imageData.data.length / 4));
+    const avgB = Math.round(totalB / (imageData.data.length / 4));
+
+    const glowColor = `rgba(${avgR}, ${avgG}, ${avgB}, 0.4)`;
+
+    const profilePicture = document.getElementById('avatar');
+    profilePicture.style.filter = `drop-shadow(0 0 20px ${glowColor})`;
+
+    // Iterate over each pixel to count color frequencies
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        const r = imageData.data[i];
+        const g = imageData.data[i + 1];
+        const b = imageData.data[i + 2];
+        const color = `rgb(${r},${g},${b})`;
+
+        if (!colorCount[color]) {
+            colorCount[color] = 0;
+        }
+        colorCount[color]++;
+
+        if (colorCount[color] > maxCount) {
+            maxCount = colorCount[color];
+            accentColor = color;
+        }
+    }
+
+    // Convert RGB to HSL
+    function rgbToHsl(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h, s, l = (max + min) / 2;
+
+        if (max === min) {
+            h = s = 0; // achromatic
+        } else {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }
+            h /= 6;
+        }
+
+        return [h, s, l];
+    }
+
+    // Convert HSL to RGB
+    function hslToRgb(h, s, l) {
+        let r, g, b;
+
+        if (s === 0) {
+            r = g = b = l; // achromatic
+        } else {
+            const hue2rgb = (p, q, t) => {
+                if (t < 0) t += 1;
+                if (t > 1) t -= 1;
+                if (t < 1 / 6) return p + (q - p) * 6 * t;
+                if (t < 1 / 2) return q;
+                if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                return p;
+            };
+
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            r = hue2rgb(p, q, h + 1 / 3);
+            g = hue2rgb(p, q, h);
+            b = hue2rgb(p, q, h - 1 / 3);
+        }
+
+        return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+    }
+    // Adjust color brightness for light and dark modes
+    const [r, g, b] = accentColor.match(/\d+/g).map(Number);
+    const [h, s, l] = rgbToHsl(r, g, b);
+
+    // Create a style element
+    const styleElement = document.createElement('style');
+    styleElement.type = 'text/css';
+
+    // Check for dark mode preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Lighten the color for dark mode
+        const [lr, lg, lb] = hslToRgb(h, s * 1.3, l * 1.9);
+        const lightAccentColor = `rgb(${lr},${lg},${lb})`;
+
+        // Set CSS variables for dark mode
+        document.documentElement.style.setProperty('--primary-color', lightAccentColor);
+        document.documentElement.style.setProperty('--highlighted-primary', lightAccentColor);
+
+        styleElement.innerHTML = `
+            .container, .textbox, .project - card, #purchase - container, .ssl - secure, .post {
+            border: 2px solid ${lightAccentColor};
+    }
+        .project - card: hover, .post hr {
+        border: 2px solid ${lightAccentColor};
+    }
+        .rating - container button:hover {
+        box - shadow: 0 0px 8px ${lightAccentColor} AA;
+    }
+        .rating - container button:active {
+        box - shadow: 0 0px 8px ${lightAccentColor} BB;
+    }
+        .rating - container button:disabled {
+        box - shadow: 0 0px 8px ${lightAccentColor} AA;
+    }
+    `;
+    } else {
+        // Darken the color for light mode
+        const [dr, dg, db] = hslToRgb(h, s, l * 1.8);
+        const darkAccentColor = `rgb(${dr}, ${dg}, ${db})`;
+
+        // Set CSS variables for light mode
+        document.documentElement.style.setProperty('--primary-color', darkAccentColor);
+
+        styleElement.innerHTML = `
+        .container, .textbox, .project - card, #purchase - container, .ssl - secure, .post {
+        border: 2px solid ${darkAccentColor};
+}
+    .project - card: hover, .post hr {
+    border: 2px solid ${darkAccentColor};
+}
+        .rating - container button:hover {
+    box - shadow: 0 0px 8px ${darkAccentColor} AA;
+}
+        .rating - container button:active {
+    box - shadow: 0 0px 8px ${darkAccentColor} BB;
+}
+        .rating - container button:disabled {
+    box - shadow: 0 0px 8px ${darkAccentColor} AA;
+}
+
+
+`;
+    }
+
+    // Append the style element to the head
+    document.head.appendChild(styleElement);
+};
+
+
 async function getFileSize(owner, repo, path, branch = 'main') {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`);
     if (!response.ok) {
@@ -74,34 +241,6 @@ async function updateFilesize() {
         filesizeElement.style.opacity = '1';
     }, 100);
 }
-
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const image = new Image();
-
-image.crossOrigin = "Anonymous";
-image.src = 'https://avatars.githubusercontent.com/u/26364458?v=4';
-
-image.onload = function () {
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-    let totalR = 0, totalG = 0, totalB = 0;
-    for (let i = 0; i < imageData.data.length; i += 4) {
-        totalR += imageData.data[i];
-        totalG += imageData.data[i + 1];
-        totalB += imageData.data[i + 2];
-    }
-    const avgR = Math.round(totalR / (imageData.data.length / 4));
-    const avgG = Math.round(totalG / (imageData.data.length / 4));
-    const avgB = Math.round(totalB / (imageData.data.length / 4));
-
-    const glowColor = `rgba(${avgR}, ${avgG}, ${avgB}, 0.4)`;
-
-    const profilePicture = document.getElementById('avatar');
-    profilePicture.style.filter = `drop-shadow(0 0 20px ${glowColor})`;
-};
 
 function toggleScrollArrow() {
     const scrollArrow = document.getElementById('scroll-arrow');
