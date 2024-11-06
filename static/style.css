@@ -308,8 +308,8 @@ button {
     padding: 5px;
     width: 80px;
     height: 80px;
-    background-color: var(--primary-color);
-    color: var(--container-background-color);
+    background-color: var(--container-background-color);
+    color: var(--primary-color);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -322,7 +322,7 @@ button {
 #purchase-container button .cursor-icon {
     margin: 5px;
     font-size: 1.5em;
-    fill: var(--container-background-color);
+    fill: var(--primary-color);
 }
 
 #purchase-container button:disabled {
@@ -332,7 +332,6 @@ button {
 
 #purchase-container button:not(:disabled):hover {
     transform: scale(1.05);
-    background-color: var(--highlighted-primary);
 }
 
 #purchase-container button:active {
