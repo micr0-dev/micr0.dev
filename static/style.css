@@ -20,7 +20,7 @@
     --highlighted-primary: #AAA;
     --background-color: #222;
     --background-color-secondary: #444;
-    --background-image: url('dnstp1oagthc1.jpeg');
+    --background-image: url('https://cdn.bsky.app/img/banner/plain/did:plc:at323p4lhhhht4awqjuitsaa/bafkreiayb3364p7wk5fb77o6vqhtwa2aua6z5gxpccmfiypik3ytfqkzve@jpeg');
     --container-background-color: rgba(51, 51, 51, 0.1);
     --text-color: #FFF;
 }
@@ -504,7 +504,7 @@ textarea {
 }
 
 .project-card:hover {
-    border: 1px solid #E86A92;
+    border: 1px solid rgba(130, 130, 130, 0.4);
 }
 
 #purchase-container {
@@ -518,22 +518,6 @@ textarea {
 .post {
     border: 1px solid rgba(68, 68, 68, 0.2);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.post hr {
-    border: 1px solid #E86A92;
-}
-
-.rating-container button:hover {
-    box-shadow: 0 0px 8px #E86A92AA;
-}
-
-.rating-container button:active {
-    box-shadow: 0 0px 8px #f64c82AA;
-}
-
-.rating-container button:disabled {
-    box-shadow: 0 0px 8px #E86A92AA;
 }
 
 

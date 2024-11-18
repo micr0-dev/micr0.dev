@@ -45,7 +45,7 @@ const ctx = canvas.getContext('2d');
 const image = new Image();
 
 image.crossOrigin = "Anonymous";
-image.src = 'https://avatars.githubusercontent.com/u/26364458?v=4';
+image.src = 'https://cdn.bsky.app/img/avatar/plain/did:plc:at323p4lhhhht4awqjuitsaa/bafkreibg4rzf4z3m3qjfj5fcrukg4uycqjfksidqxhlhjxpyeukev3ggrm@jpeg';
 
 image.onload = function () {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
