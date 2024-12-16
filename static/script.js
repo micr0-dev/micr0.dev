@@ -45,7 +45,7 @@ const ctx = canvas.getContext('2d');
 const image = new Image();
 
 image.crossOrigin = "Anonymous";
-image.src = 'd8fa3f2c4b09d430.png';
+image.src = 'a';
 
 image.onload = function () {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
